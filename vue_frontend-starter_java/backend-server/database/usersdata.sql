@@ -9,7 +9,7 @@ users_id serial PRIMARY KEY
 ,last_name varchar NOT NULL
 ,address varchar NOT NULL
 ,city varchar NOT NULL
-,state varchar NOT NULL
+,state char(2) NOT NULL
 ,zip_code integer NOT NULL
 );
 
