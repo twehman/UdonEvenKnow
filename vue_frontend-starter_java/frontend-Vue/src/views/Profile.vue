@@ -3,7 +3,7 @@
   <div id="profile" class="text-center">
     <form class="form-profile" @submit.prevent="profile">
       <h1 class="sign" align="center">Create Profile</h1>
-     
+       
       <input
         type="text"
         id="firstName"
@@ -103,12 +103,14 @@
 						<option value="WI">Wisconsin</option>
 						<option value="WY">Wyoming</option>
 		</select>
-      
+     
+
        <input
         type="text"
         id="zipcode"
         class="zip"
         placeholder="Zipcode"
+        pattern="[0-9]{5}"
         v-model="user.zipcode"
         required
       />
@@ -135,9 +137,11 @@ export default {
         zipcode: '',
       },
       
+      
     }
   },
   methods: {
+  
     profile() {
       fetch(`${process.env.VUE_APP_REMOTE_API}/profile`, {
         method: 'POST',
