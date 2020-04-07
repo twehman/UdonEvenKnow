@@ -5,25 +5,26 @@ public class UserPreferences {
 
 
     // Declared Variables
-    public long users_Id;
+    public long usersId;
     public int id;
-    public String first_name;
-    public String last_name;
+    public String firstName;
+    public String lastName;
     public String addressOne;
     public String addressTwo;
     public String city;
     public String state;
-    public int zip_code;
+    public int zipCode;
+    public boolean userPreferencesExist;
 
     
     
     // The users ID. 
     public long getUserId() {
-        return users_Id;
+        return usersId;
     }
 
-    public void setUserId(long users_Id) {
-        this.users_Id = users_Id;
+    public void setUserId(long usersId) {
+        this.usersId = usersId;
     }
     // The table Id
     public int getId() {
@@ -36,20 +37,20 @@ public class UserPreferences {
     
     // The user's first name.
     public String getFirstName() {
-        return first_name;
+        return firstName;
     }
 
-    public void setFirstName(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
    
     // The user's last name.
     public String getLastName() {
-        return last_name;
+        return lastName;
     }
 
-    public void setLastName(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getAddressOne() {
@@ -90,11 +91,19 @@ public class UserPreferences {
     
     // The user's Zip Code.
     public int getZipCode() {
-        return zip_code;
+        return zipCode;
     }
 
-    public void setZipCode(int zip_code) {
-        this.zip_code = zip_code;
+    public void setZipCode(int zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public boolean isUserPreferencesExist() {
+        return userPreferencesExist;
+    }
+
+    public void setUserPreferencesExist(boolean userPreferencesExist) {
+        this.userPreferencesExist = userPreferencesExist;
     }
 
    
