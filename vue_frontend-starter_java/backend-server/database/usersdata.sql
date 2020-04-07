@@ -7,7 +7,8 @@ users_id serial PRIMARY KEY
 ,id integer NOT NULL
 ,first_name varchar NOT NULL
 ,last_name varchar NOT NULL
-,address varchar NOT NULL
+,address_one varchar NOT NULL
+,address_two varchar NOT NULL
 ,city varchar NOT NULL
 ,state char(2) NOT NULL
 ,zip_code integer NOT NULL
