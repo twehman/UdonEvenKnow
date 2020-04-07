@@ -65,6 +65,11 @@ public class AccountController {
     	if (userZipInfo != null) {
     		return userZipInfo;
     	}
+    	else {
+    		Zipcode noCode = new Zipcode();
+    		noCode.setZip(00000);
+    		return noCode;
+    	}
     }
 
 }
