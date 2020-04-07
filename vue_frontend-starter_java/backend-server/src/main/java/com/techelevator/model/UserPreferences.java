@@ -5,42 +5,51 @@ public class UserPreferences {
 
 
     // Declared Variables
-    public String userId;
-    public String firstName;
-    public String lastName;
+    public long users_Id;
+    public int id;
+    public String first_name;
+    public String last_name;
     public String addressOne;
     public String addressTwo;
     public String city;
     public String state;
-    public String zipCode;
+    public int zip_code;
 
     
     
     // The users ID. 
-    public String getUserId() {
-        return userId;
+    public long getUserId() {
+        return users_Id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserId(long users_Id) {
+        this.users_Id = users_Id;
+    }
+    // The table Id
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     // The user's first name.
     public String getFirstName() {
-        return firstName;
+        return first_name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstName(String first_name) {
+        this.first_name = first_name;
     }
    
     // The user's last name.
     public String getLastName() {
-        return lastName;
+        return last_name;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastName(String last_name) {
+        this.last_name = last_name;
     }
 
     public String getAddressOne() {
@@ -79,14 +88,16 @@ public class UserPreferences {
         this.state = state;
     }
     
-    // The user's zipcode.
-    public String getZipCode() {
-        return zipCode;
+    // The user's Zip Code.
+    public int getZipCode() {
+        return zip_code;
     }
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
+    public void setZipCode(int zip_code) {
+        this.zip_code = zip_code;
     }
+
+   
 
    
 
