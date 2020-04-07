@@ -31,8 +31,12 @@ public class JdbcUserPreferencesDao implements UserPreferencesDao {
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUserPreferences, id);
         if (results.next()) {
-            
+            long storedId = results.getLong("id");
+            long enteredId = 
+            if(storedId.equals())
         }
+
+        
         return null;
     }
 
