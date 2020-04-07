@@ -7,6 +7,8 @@ import com.techelevator.authentication.JwtTokenHandler;
 import com.techelevator.authentication.UnauthorizedException;
 import com.techelevator.authentication.UserCreationException;
 import com.techelevator.model.User;
+import com.techelevator.zipcode.JdbcZipcodeDao;
+import com.techelevator.zipcode.Zipcode;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -24,6 +26,14 @@ public class AccountController {
 
     @Autowired
     private JwtTokenHandler tokenHandler;
+    
+    @Autowired 
+    private JdbcZipcodeDao zipDao;
+    
+    @Autowired
+    private JdbcUserPreferencesDao profileDao;
+    
+    
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public String login(@RequestBody User user, RedirectAttributes flash) throws UnauthorizedException {
@@ -46,6 +56,20 @@ public class AccountController {
         }
         auth.register(user.getUsername(), user.getPassword(), user.getRole());
         return "{\"success\":true}";
+    }
+    
+    @RequestMapping(path = "/home", method=RequestMethod.GET)
+    public Zipcode getLatAndLong() {
+    	User currUser = auth.getCurrentUser();
+    	Zipcode userZipInfo = zipDao.getLatandLongwithZip(profileDao.getValidUserPreferencesWithId(currUser.getId()).getZipcode());
+    	if (userZipInfo != null) {
+    		return userZipInfo;
+    	}
+    	else {
+    		Zipcode noCode = new Zipcode();
+    		noCode.setZip(00000);
+    		return noCode;
+    	}
     }
 
 }

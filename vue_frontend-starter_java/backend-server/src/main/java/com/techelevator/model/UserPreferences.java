@@ -5,24 +5,34 @@ public class UserPreferences {
 
 
     // Declared Variables
-    public String userId;
+    public long usersId;
+    public int id;
     public String firstName;
     public String lastName;
     public String addressOne;
     public String addressTwo;
     public String city;
     public String state;
-    public String zipCode;
+    public int zipCode;
+    public boolean userPreferencesExist;
 
     
     
     // The users ID. 
-    public String getUserId() {
-        return userId;
+    public long getUserId() {
+        return usersId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserId(long usersId) {
+        this.usersId = usersId;
+    }
+    // The table Id
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     // The user's first name.
@@ -79,14 +89,24 @@ public class UserPreferences {
         this.state = state;
     }
     
-    // The user's zipcode.
-    public String getZipCode() {
+    // The user's Zip Code.
+    public int getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(String zipCode) {
+    public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
     }
+
+    public boolean isUserPreferencesExist() {
+        return userPreferencesExist;
+    }
+
+    public void setUserPreferencesExist(boolean userPreferencesExist) {
+        this.userPreferencesExist = userPreferencesExist;
+    }
+
+   
 
    
 
