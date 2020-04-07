@@ -18,20 +18,20 @@ public interface UserPreferencesDao {
      * @param zipCode the user's Zip Code
      * @return the new user
      */
-    public UserPreferences saveUserPreferences(long usersId, int id, String firstName, String lastName, String addressOne, 
+    public UserPreferences saveUserPreferences(long id, String firstName, String lastName, String addressOne, 
                                                      String addressTwo, String city, String State, int zipCode);
 
     public void changeUserPreferences(String firstName, String lastName, String addressOne, String addressTwo, 
                                                                    String city, String State, int zipCode);
 
-    
+
      /**
      * Look for a user preferences with the given user ID. 
      * 
      * @param usersId the user name of the user we are checking
      * @return true if the user is found and their ID matches existing data?
      */  
-    public UserPreferences getValidUserPreferencesWithId(long usersId);
+    public UserPreferences getValidUserPreferencesWithId(long id);
 
     /**
      * Get all of the user's preferences from the database.

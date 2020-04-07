@@ -6,7 +6,7 @@ public class UserPreferences {
 
     // Declared Variables
     public long usersId;
-    public int id;
+    public long id;
     public String firstName;
     public String lastName;
     public String addressOne;
@@ -27,11 +27,11 @@ public class UserPreferences {
         this.usersId = usersId;
     }
     // The table Id
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
     
