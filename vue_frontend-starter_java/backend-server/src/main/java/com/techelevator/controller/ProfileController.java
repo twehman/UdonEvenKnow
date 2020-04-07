@@ -36,15 +36,7 @@ public class ProfileController {
 }
     
     @RequestMapping(path = "/profile", method = RequestMethod.POST)
-    public String postUserPreference(@Valid @RequestBody User user, BindingResult result) throws UserCreationException {
-        if (result.hasErrors()) {
-            String errorMessages = "";
-            for (ObjectError error : result.getAllErrors()) {
-                errorMessages += error.getDefaultMessage() + "\n";
-            }
-            throw new UserCreationException(errorMessages);
-        }
-        auth.register(user.getUsername(), user.getPassword(), user.getRole());
-        return "{\"success\":true}";
+    public String postUserPreference(@Valid @RequestBody UserPreferences user, BindingResult result) throws UserCreationException {
+       
     }
 }
