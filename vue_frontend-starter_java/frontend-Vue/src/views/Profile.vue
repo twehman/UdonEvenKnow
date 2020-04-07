@@ -1,7 +1,7 @@
 <template>
 <div class="main">
   <div id="profile" class="text-center">
-    <form class="form-profile" @submit.prevent="saveProfile">
+    <form class="form-profile" @submit.prevent="profile">
       <h1 class="sign" align="center">Create Profile</h1>
      
       <input
@@ -35,7 +35,7 @@
         class="pass"
         placeholder="Address 2"
         v-model="user.address2"
-        required
+        
       />
       
        <input
@@ -105,7 +105,7 @@
 		</select>
       
        <input
-        type="number"
+        type="text"
         id="zipcode"
         class="zip"
         placeholder="Zipcode"
@@ -134,16 +134,31 @@ export default {
         state: '',
         zipcode: '',
       },
-      profile: []
-      //registrationErrors: false,
+      
     }
   },
   methods: {
-      saveProfile() {
-        this.user.unshift(this.profile);
-      }
-  }
-}
+    profile() {
+      fetch(`${process.env.VUE_APP_REMOTE_API}/profile`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.user),
+      })
+        .then((response) => {
+          if (response.ok) {
+            this.$router.push({ path: '/' });
+          } else {
+            this.registrationErrors = true;
+          }
+        })
+
+        .then((err) => console.error(err));
+    },
+  },
+};
 </script>
 
 <style>
