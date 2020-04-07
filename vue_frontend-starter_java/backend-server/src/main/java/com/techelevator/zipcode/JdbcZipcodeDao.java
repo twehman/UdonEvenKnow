@@ -36,7 +36,7 @@ public class JdbcZipcodeDao implements ZipcodeDao {
 		returnedZipcode.setLatitude(results.getDouble("latitude"));
 		returnedZipcode.setLongitude(results.getDouble("longitude"));
 		returnedZipcode.setZip(results.getInt("zip"));
-		return null;
+		return returnedZipcode;
 	}
 
 }
