@@ -19,10 +19,8 @@ public interface UserPreferencesDao {
      * @return the new user
      */
     public UserPreferences saveUserPreferences(long id, String firstName, String lastName, String addressOne, 
-                                                     String addressTwo, String city, String State, int zipCode);
+                                                     String addressTwo, String city, String state, int zipCode);
 
-    public void changeUserPreferences(String firstName, String lastName, String addressOne, String addressTwo, 
-                                                                   String city, String State, int zipCode);
 
 
      /**
@@ -38,4 +36,7 @@ public interface UserPreferencesDao {
      * @return a List of user preference objects
      */
     public List<UserPreferences> getAllUserPreferences();
+
+	public UserPreferences changeUserPreferences(long id, String firstName, String lastName, String addressOne, String addressTwo,
+			String city, String state, int zipCode);
 }

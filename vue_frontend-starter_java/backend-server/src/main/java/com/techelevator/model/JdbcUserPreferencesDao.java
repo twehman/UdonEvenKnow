@@ -13,16 +13,36 @@ public class JdbcUserPreferencesDao implements UserPreferencesDao {
 
     @Override
     public UserPreferences saveUserPreferences(long id, String firstName, String lastName,
-            String addressOne, String addressTwo, String city, String State, int zipCode) {
-        // TODO Auto-generated method stub
-        return null;
+    		String addressOne, String addressTwo, String city, String state, int zipCode) {
+    	UserPreferences userPref = new UserPreferences();
+    	userPref.setId(id);
+    	userPref.setFirstName(firstName);
+    	userPref.setLastName(lastName);
+    	userPref.setAddressOne(addressOne);
+    	userPref.setAddressTwo(addressTwo);
+    	userPref.setCity(city);
+    	userPref.setState(state);
+    	userPref.setZipCode(zipCode);
+        String sqlQuery = "INSERT INTO user_data (id, first_name, last_name, address_one, address_two, city, state, zip_code) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sqlQuery, id, firstName, lastName, addressOne, addressTwo, city, state, zipCode);
+        return userPref;
     }
 
     @Override
-    public void changeUserPreferences(String firstName, String lastName, String addressOne, String addressTwo,
-            String city, String State, int zipCode) {
-        // TODO Auto-generated method stub
-
+    public UserPreferences changeUserPreferences(long id, String firstName, String lastName, String addressOne, String addressTwo,
+            String city, String state, int zipCode) {
+    	UserPreferences userPref = new UserPreferences();
+    	userPref.setId(id);
+    	userPref.setFirstName(firstName);
+    	userPref.setLastName(lastName);
+    	userPref.setAddressOne(addressOne);
+    	userPref.setAddressTwo(addressTwo);
+    	userPref.setCity(city);
+    	userPref.setState(state);
+    	userPref.setZipCode(zipCode);
+        String sqlQuery = "UPDATE user_data (first_name, last_name, address_one, address_two, city, state, zip_code) VALUES( ?, ?, ?, ?, ?, ?, ?) WHERE id = ?";
+        jdbcTemplate.update(sqlQuery, firstName, lastName, addressOne, addressTwo, city, state, zipCode, id);
+        return userPref;
     }
 
     @Override
@@ -30,14 +50,12 @@ public class JdbcUserPreferencesDao implements UserPreferencesDao {
         String sqlSearchForUserPreferences = "SELECT * FROM users_data WHERE id = ?";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUserPreferences, id);
-        if (results.next()) {
-            long storedId = results.getLong("id");
-            long enteredId = 
-            if(storedId.equals())
-        }
-
+        UserPreferences userPref = new UserPreferences();
         
-        return null;
+        if (results.next()) {
+            userPref = mapRowToUserPreferences(results);
+        }
+        return userPref;
     }
 
     @Override
@@ -69,6 +87,7 @@ public class JdbcUserPreferencesDao implements UserPreferencesDao {
             
 
         }
+
 
    
 

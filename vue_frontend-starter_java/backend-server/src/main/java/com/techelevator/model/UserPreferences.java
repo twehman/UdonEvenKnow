@@ -5,16 +5,16 @@ public class UserPreferences {
 
 
     // Declared Variables
-    public long usersId;
-    public long id;
-    public String firstName;
-    public String lastName;
-    public String addressOne;
-    public String addressTwo;
-    public String city;
-    public String state;
-    public int zipCode;
-    public boolean userPreferencesExist;
+    private long usersId;
+    private long id;
+    private String firstName;
+    private String lastName;
+    private String addressOne;
+    private String addressTwo;
+    private String city;
+    private String state;
+    private int zipCode;
+    private boolean userPreferencesExist;
 
     
     
