@@ -1,5 +1,6 @@
 package com.techelevator.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techelevator.authentication.AuthProvider;
+import com.techelevator.authentication.JwtTokenHandler;
 import com.techelevator.authentication.UserCreationException;
 import com.techelevator.model.JdbcUserPreferencesDao;
 import com.techelevator.model.User;
@@ -23,11 +25,15 @@ public class ProfileController {
     private AuthProvider auth;
 	
     @Autowired
+    private JwtTokenHandler tokenHandler;
+	
+    @Autowired
     private JdbcUserPreferencesDao profileDao;
     
     @RequestMapping(path = "/profile", method = RequestMethod.GET)
     public UserPreferences getUserPreference() {
     	User currUser = auth.getCurrentUser();
+    	System.out.println(currUser.getId());
     	UserPreferences userPreferencesInfo = profileDao.getValidUserPreferencesWithId(currUser.getId());
     	if (userPreferencesInfo != null) {
     		return userPreferencesInfo;
@@ -36,7 +42,12 @@ public class ProfileController {
 }
     
     @RequestMapping(path = "/profile", method = RequestMethod.POST)
-    public String postUserPreference(@Valid @RequestBody UserPreferences user, BindingResult result) throws UserCreationException {
-       
+    public String postUserPreference(@Valid @RequestBody UserPreferences userpref, BindingResult result, HttpServletRequest request) throws UserCreationException {
+       System.out.println(request.getHeader("Authorization"));
+       User currUser = tokenHandler.getUser(request.getHeader("Authorization"));
+       System.out.println(currUser.getUsername());
+       System.out.println(userpref.getAddressOne());
+       UserPreferences currUserPreferences = profileDao.saveUserPreferences(currUser.getId(), userpref.getFirstName(), userpref.getLastName(), userpref.getAddressOne(), userpref.getAddressTwo(), userpref.getCity(), userpref.getState(), userpref.getZipCode());
+       return "{\"success\":true}";
     }
 }

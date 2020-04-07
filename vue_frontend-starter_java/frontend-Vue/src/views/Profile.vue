@@ -9,7 +9,7 @@
         id="firstName"
         class="fn"
         placeholder="FirstName"
-        v-model="user.firstName"
+        v-model="userPreferences.firstName"
         required
         autofocus
       />
@@ -18,7 +18,7 @@
         id="lastName"
         class="ln"
         placeholder="LastName"
-        v-model="user.lastName"
+        v-model="userPreferences.lastName"
         required
       />
       <input
@@ -26,7 +26,7 @@
         id="address1"
         class="add1"
         placeholder="Address 1"
-        v-model="user.address1"
+        v-model="userPreferences.address1"
         required
       />
       <input
@@ -34,7 +34,7 @@
         id="address2"
         class="pass"
         placeholder="Address 2"
-        v-model="user.address2"
+        v-model="userPreferences.address2"
         
       />
       
@@ -43,13 +43,13 @@
         id="city"
         class="city"
         placeholder="City"
-        v-model="user.city"
+        v-model="userPreferences.city"
         required
       />
        <select
         id="state"
         class="state"
-        v-model="user.state"
+        v-model="userPreferences.state"
         name="state">
         <option value="AL">Alabama</option>
 						<option value="AK">Alaska</option>
@@ -113,7 +113,7 @@
         pattern="[0-9]{5}"
         oninvalid="setCustomValidity('Please enter valid zipcode.')" 
         oninput="setCustomValidity('')"
-        v-model="user.zipcode"
+        v-model="userPreferences.zipcode"
         
       />
       <p align="center"><button class="btn btn-lg btn-primary btn-block" type="submit">
@@ -125,11 +125,13 @@
 </template>
 
 <script>
+import auth from '@/auth'
 export default {
   name: 'profile',
+  //user: auth.getUser(),
   data() {
     return { 
-      user: {
+      userPreferences: {
         firstName: '',
         lastName: '',
         address1: '',
@@ -148,10 +150,10 @@ export default {
       fetch(`${process.env.VUE_APP_REMOTE_API}/profile`, {
         method: 'POST',
         headers: {
-          Accept: 'application/json',
           'Content-Type': 'application/json',
+          Authorization: auth.getToken()
         },
-        body: JSON.stringify(this.user),
+        body: JSON.stringify(this.userPreferences),
       })
         .then((response) => {
           if (response.ok) {
