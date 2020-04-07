@@ -26,13 +26,13 @@ public class JdbcZipcodeDao implements ZipcodeDao {
 		while(results.next()) {
 			userZipcode = mapRowSetToZipCode(results);
 		}
+		
 		return userZipcode;
 	}
 
 	@Override
 	public Zipcode mapRowSetToZipCode(SqlRowSet results) {
 		Zipcode returnedZipcode = new Zipcode();
-		
 		returnedZipcode.setLatitude(results.getDouble("latitude"));
 		returnedZipcode.setLongitude(results.getDouble("longitude"));
 		returnedZipcode.setZip(results.getInt("zip"));
