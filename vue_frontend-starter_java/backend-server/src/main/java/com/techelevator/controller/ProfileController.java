@@ -44,7 +44,7 @@ public class ProfileController {
     @RequestMapping(path = "/profile", method = RequestMethod.POST)
     public String postUserPreference(@Valid @RequestBody UserPreferences userpref, BindingResult result, HttpServletRequest request) throws UserCreationException {
        System.out.println(request.getHeader("Authorization"));
-       User currUser = tokenHandler.getUser(request.getHeader("Authorization"));
+       User currUser = auth.getCurrentUser();
        System.out.println(currUser.getUsername());
        System.out.println(userpref.getAddressOne());
        UserPreferences currUserPreferences = profileDao.saveUserPreferences(currUser.getId(), userpref.getFirstName(), userpref.getLastName(), userpref.getAddressOne(), userpref.getAddressTwo(), userpref.getCity(), userpref.getState(), userpref.getZipCode());

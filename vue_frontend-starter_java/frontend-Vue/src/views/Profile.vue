@@ -151,7 +151,8 @@ export default {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: auth.getToken()
+          Authorization: auth.getToken(),
+          User: auth.getUser()
         },
         body: JSON.stringify(this.userPreferences),
       })
