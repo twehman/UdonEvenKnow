@@ -150,9 +150,7 @@ export default {
         .then((response) => {
           if (response.ok) {
             this.$router.push({ path: '/' });
-          } else {
-            this.registrationErrors = true;
-          }
+          } 
         })
 
         .then((err) => console.error(err));
