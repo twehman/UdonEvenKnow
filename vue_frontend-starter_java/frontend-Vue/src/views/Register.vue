@@ -3,7 +3,7 @@
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
       <h1 class="sign" align="center">Create Account</h1>
-      <div class="alert alert-danger" role="alert" v-if="registrationErrors">
+      <div class="alert alert-danger" role="alert" v-if="registrationErrors" align="center">
         There were problems registering this user.
       </div>
       <input

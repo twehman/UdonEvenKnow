@@ -3,10 +3,10 @@
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
       <h1 class="sign" align="center">Please Sign In</h1>
-      <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
+      <div class="alert alert-danger" role="alert" v-if="invalidCredentials" align="center">
         Invalid username and password!
       </div>
-      <div class="alert alert-success" role="alert" v-if="this.$route.query.registration">
+      <div class="alert alert-success" role="alert" v-if="this.$route.query.registration" align="center"> 
         Thank you for registering, please sign in.
       </div>
       <input

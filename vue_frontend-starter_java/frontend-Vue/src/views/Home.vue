@@ -3,7 +3,6 @@
   <div class="home">
     <h1 class="sign" align="center">Welcome to Restaurant Tinder</h1>
     <p align="center">You must be authenticated to see this.</p>
-    <p align="center">Please <router-link to="/login">login</router-link> in order to proceed.</p>
   </div>
   </div>
 </template>
