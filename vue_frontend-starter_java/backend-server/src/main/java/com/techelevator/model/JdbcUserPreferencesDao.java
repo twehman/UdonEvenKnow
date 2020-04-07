@@ -1,11 +1,15 @@
 package com.techelevator.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 @Component
 public class JdbcUserPreferencesDao implements UserPreferencesDao {
+
+    private JdbcTemplate jdbcTemplate;
 
     @Override
     public UserPreferences saveUserPreferences(long id, String firstName, String lastName,
@@ -22,33 +26,42 @@ public class JdbcUserPreferencesDao implements UserPreferencesDao {
     }
 
     @Override
-    public UserPreferences getValidUserPreferencesWithId(long usersId) {
-        // TODO Auto-generated method stub
+    public UserPreferences getValidUserPreferencesWithId(long id) {
+        String sqlSearchForUserPreferences = "SELECT * FROM users_data WHERE id = ?";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUserPreferences, id);
+        if (results.next()) {
+            
+        }
         return null;
     }
 
     @Override
     public List<UserPreferences> getAllUserPreferences() {
-        // TODO Auto-generated method stub
-        return null;
+        List<UserPreferences> allUserPreferences = new ArrayList<UserPreferences>();
+        String sqlSelectAllUserPreferences = "SELECT * FROM users_data";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllUserPreferences);
+
+        while(results.next()) {
+            UserPreferences preferences = mapRowToUserPreferences(results);
+            allUserPreferences.add(preferences);
+        }
+        return allUserPreferences;
     }
 
 
-    private UserPreferences mapRowToUser(SqlRowSet results) {
+    private UserPreferences mapRowToUserPreferences(SqlRowSet results) {
         UserPreferences preferences = new UserPreferences();
             preferences.setId(results.getLong("id"));
             preferences.setFirstName(results.getString("first_name"));
             preferences.setLastName(results.getString("last_name"));
-            preferences.setAddressOne(addressOne);
-            Username = Convert.ToString(reader["username"]),
-            FirstName = Convert.ToString(reader["firstname"]),
-            LastName = Convert.ToString(reader["lastname"]),
-            AddressOne = Convert.ToString(reader["address1"]),
-            AddressTwo = Convert.ToString(reader["address2"]),
-            City = Convert.ToString(reader["city"]),
-            State = Convert.ToString(reader["state"]),
-            PostalCode = Convert.ToString(reader["postalcode"])
-
+            preferences.setAddressOne(results.getString("address_one"));
+            preferences.setAddressTwo(results.getString("address_two"));
+            preferences.setCity(results.getString("city"));
+            preferences.setState(results.getString("state"));
+            preferences.setZipCode(results.getInt("zip_code"));
+            return preferences;
+            
             
 
         }
