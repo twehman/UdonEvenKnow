@@ -6,6 +6,7 @@ import com.techelevator.authentication.AuthProvider;
 import com.techelevator.authentication.JwtTokenHandler;
 import com.techelevator.authentication.UnauthorizedException;
 import com.techelevator.authentication.UserCreationException;
+import com.techelevator.model.JdbcUserPreferencesDao;
 import com.techelevator.model.User;
 import com.techelevator.zipcode.JdbcZipcodeDao;
 import com.techelevator.zipcode.Zipcode;
@@ -58,16 +59,16 @@ public class AccountController {
         return "{\"success\":true}";
     }
     
-    @RequestMapping(path = "/home", method=RequestMethod.GET)
+    @RequestMapping(path = "/restaurants", method=RequestMethod.GET)
     public Zipcode getLatAndLong() {
     	User currUser = auth.getCurrentUser();
-    	Zipcode userZipInfo = zipDao.getLatandLongwithZip(profileDao.getValidUserPreferencesWithId(currUser.getId()).getZipcode());
+    	Zipcode userZipInfo = zipDao.getLatandLongwithZip(profileDao.getValidUserPreferencesWithId(currUser.getId()).zipCode);
     	if (userZipInfo != null) {
     		return userZipInfo;
     	}
     	else {
     		Zipcode noCode = new Zipcode();
-    		noCode.setZip(00000);
+    		noCode.setZip(99999);
     		return noCode;
     	}
     }
