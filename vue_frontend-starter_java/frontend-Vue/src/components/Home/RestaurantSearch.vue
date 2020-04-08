@@ -1,7 +1,6 @@
 <template>
 <div>
-    {{this.zipcode.latitude}}
-    <div v-for="item in this.getAvailableRestaurantTypes(this.zipcode.latitude, this.zipcode.longitude)" id="selectedCuisines">
+    <div v-for="item in cuisines.cuisines" id="selectedCuisines">
         <input type="checkbox" :id="item.cuisine.cuisine_name" :name="item.cuisine.cuisine_name" :value="item.cuisine.cuisine_id" v-model="selectedCuisines">
         <label :for="item.cuisine.cuisine_name"> {{item.cuisine.cuisine_name}}</label>
     </div>
@@ -24,26 +23,6 @@ export default {
     };
   },
   methods: {
-      getAvailableRestaurantTypes(lat, long) {
-          console.log(lat)
-          console.log(long)
-            const apiurl = 'https://developers.zomato.com/api/v2.1/cuisines?lat=' + lat + '&lon=' + long
-            console.log(apiurl)
-              fetch(apiurl, {
-              method: 'GET',
-              headers: {
-                Accept: 'application/json',
-                'user-key': 'c1bbb3341d92fcff2ad26d1965e26008',
-              }
-        })
-        .then((response) =>{
-            return response.json()
-        })
-        .then((data) => {
-            this.cuisines = data
-        })
-        .catch((err) => console.log(err))
-      }
 
   },
   created() {
@@ -61,7 +40,7 @@ export default {
           this.zipcode = userZipcode
       })
       .catch((err) => console.log(err))
-    /* fetch('https://developers.zomato.com/api/v2.1/cuisines?lat=41.480881&lon=-81.80036', {
+    fetch('https://developers.zomato.com/api/v2.1/cuisines?lat=41.480881&lon=-81.80036', {
               method: 'GET',
               headers: {
                 Accept: 'application/json',
@@ -75,7 +54,7 @@ export default {
             this.cuisines = data
         })
         .catch((err) => console.log(err))
-    */
+
 }
 }
 </script>
