@@ -32,7 +32,9 @@
 </template>
 
 <script>
-import auth from '@/auth'
+import auth from '@/auth';
+import DislikeButton from "@/components/Home/DislikeButton.vue";
+import LikeButton from "@/components/Home/LikeButton.vue";
 
 export default {
   name: "RestaurantSummary",
