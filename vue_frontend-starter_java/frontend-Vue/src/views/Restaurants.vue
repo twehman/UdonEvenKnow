@@ -15,7 +15,6 @@ export default {
         latitude: '',
         longitude: '',
       },
-      userinf: [],
     };
   },
   methods: {
@@ -34,9 +33,6 @@ export default {
         })
       .then((userZipcode)=> {
           this.zipcode = userZipcode
-          if(userZipcode.zip === 99999) {
-              this.$router.push({ path: '/login'})
-          }
       })
       .catch((err) => console.log(err))
 
