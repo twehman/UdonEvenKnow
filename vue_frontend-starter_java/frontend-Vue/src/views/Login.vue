@@ -110,7 +110,7 @@ body {
     font-weight: 700;
     font-size: 14px;
     letter-spacing: 1px;
-    background: rgba(136, 126, 126, 0.04);
+    background: rgba(126, 132, 136, 0.04);
     padding: 10px 20px;
     border: none;
     border-radius: 20px;

@@ -107,14 +107,15 @@
      
 
        <input
-        type="number"
+        type="text"
         id="zipcode"
         class="zip"
         placeholder="Zipcode"
         pattern="[0-9]{5}"
         oninvalid="setCustomValidity('Please enter valid zipcode.')" 
         oninput="setCustomValidity('')"
-        v-model="userPreferences.zipcode"
+        
+        v-model="userPreferences.zipCode"
         
       />
       <p align="center"><button class="btn btn-lg btn-primary btn-block" type="submit">
