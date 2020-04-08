@@ -14,14 +14,25 @@ Restaurant details, will make prettier
 </template>
 
 <script>
-import Buttons from '@/components/Home/Buttons.vue';
+import RestaurantSearch from "@/components/Home/RestaurantSearch.vue";
+import RestaurantDetails from "@/components/Home/RestaurantDetails.vue";
 
 export default {
   name: 'home',
   components: {
-    Buttons
-}
-}
+    RestaurantSearch,
+    RestaurantDetails
+},
+
+data() {
+  return {
+    details: []
+  };
+},
+    methods: {
+      //performSearch?
+        }
+  };
 </script>
 
 <style scoped>

@@ -1,14 +1,14 @@
 <template>
   <div class="restaurant-details">
-    <div class="details" v-for="details in restaurants" :key="">
+    <div class="details" v-if="details.restaurants" :key="restaurantNumber">
       <div class="featuredimage">
-        <img :src="#">
+        <img :src="getImage">
       <div class="text-infor">
         <div class="text-container" id="text-info">
-          <h3 class="name">{{details.name}}</h3>
+          <h3 class="name">{{details.restaurants[restaurantNumber].restaurant.name}}</h3>
           <h3 class="rating">
-            <span class="rating-object">Rating:{{details.rating}}</span>
-            
+            <span class="rating-object">Rating:</span>
+            {{details.restaurants[restaurantNumber].restaurant.user_rating.aggregate_rating}} out of 5
           </h3>
           <h3 class="location">
             <span class="location-object">Location:{{details.location}}</span>
@@ -37,19 +37,23 @@ import DislikeButton from "@/components/Home/DislikeButton.vue";
 import LikeButton from "@/components/Home/LikeButton.vue";
 
 export default {
-  name: "RestaurantDetails",
-  props: {
+    name: "RestaurantDetails",
+    props: {
+        details: Object
+    },
+    components: {
+        DislikeButton,
+        LikeButton
+    },
     
-  },
+
   data() {
         return {
             restaurants: [],
             apiUrl: ""
         }
     },
-  components: {
-    
-  },
+ 
   computed: {
     
   
