@@ -3,19 +3,37 @@ package com.techelevator.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+
+import com.techelevator.authentication.PasswordHasher;
 @Component
 public class JdbcUserPreferencesDao implements UserPreferencesDao {
-
+	
     private JdbcTemplate jdbcTemplate;
+    
+    @Autowired
+    public JdbcUserPreferencesDao(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
 
     @Override
     public UserPreferences saveUserPreferences(long id, String firstName, String lastName,
     		String addressOne, String addressTwo, String city, String state, int zipCode) {
     	UserPreferences userPref = new UserPreferences();
     	userPref.setId(id);
+    	System.out.println(id);
+    	System.out.println(firstName);
+    	System.out.println(lastName);
+    	System.out.println(addressOne);
+    	System.out.println(addressTwo);
+    	System.out.println(city);
+    	System.out.println(state);
+    	System.out.println(zipCode);
     	userPref.setFirstName(firstName);
     	userPref.setLastName(lastName);
     	userPref.setAddressOne(addressOne);
@@ -23,7 +41,7 @@ public class JdbcUserPreferencesDao implements UserPreferencesDao {
     	userPref.setCity(city);
     	userPref.setState(state);
     	userPref.setZipCode(zipCode);
-        String sqlQuery = "INSERT INTO user_data (id, first_name, last_name, address_one, address_two, city, state, zip_code) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlQuery = "INSERT INTO users_data (id, first_name, last_name, address_one, address_two, city, state, zip_code) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sqlQuery, id, firstName, lastName, addressOne, addressTwo, city, state, zipCode);
         return userPref;
     }

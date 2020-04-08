@@ -15,7 +15,7 @@ public class JdbcZipcodeDao implements ZipcodeDao {
 	private JdbcTemplate jdbcTemplate;
 	
     @Autowired
-    public JdbcZipcodeDao(DataSource dataSource, PasswordHasher passwordHasher) {
+    public JdbcZipcodeDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
