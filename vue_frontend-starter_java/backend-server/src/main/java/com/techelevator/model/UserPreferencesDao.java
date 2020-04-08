@@ -39,4 +39,6 @@ public interface UserPreferencesDao {
 
 	public UserPreferences changeUserPreferences(long id, String firstName, String lastName, String addressOne, String addressTwo,
 			String city, String state, int zipCode);
+	
+	public boolean userHasPreferencesEntry(long id);
 }

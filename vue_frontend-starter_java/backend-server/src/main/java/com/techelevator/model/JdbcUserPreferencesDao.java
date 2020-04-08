@@ -26,14 +26,6 @@ public class JdbcUserPreferencesDao implements UserPreferencesDao {
     		String addressOne, String addressTwo, String city, String state, int zipCode) {
     	UserPreferences userPref = new UserPreferences();
     	userPref.setId(id);
-    	System.out.println(id);
-    	System.out.println(firstName);
-    	System.out.println(lastName);
-    	System.out.println(addressOne);
-    	System.out.println(addressTwo);
-    	System.out.println(city);
-    	System.out.println(state);
-    	System.out.println(zipCode);
     	userPref.setFirstName(firstName);
     	userPref.setLastName(lastName);
     	userPref.setAddressOne(addressOne);
@@ -105,6 +97,12 @@ public class JdbcUserPreferencesDao implements UserPreferencesDao {
             
 
         }
+
+	@Override
+	public boolean userHasPreferencesEntry(long id) {
+		String sqlQuery = "EXISTS(SELECT id from  users_data where id = ?";
+		return jdbcTemplate.queryForObject(sqlQuery, Boolean.class, id);
+	}
 
 
    

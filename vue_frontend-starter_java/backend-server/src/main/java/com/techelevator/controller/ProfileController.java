@@ -32,14 +32,16 @@ public class ProfileController {
     private JdbcUserPreferencesDao profileDao;
     
     @RequestMapping(path = "/profile", method = RequestMethod.GET)
-    public UserPreferences getUserPreference() {
+    public String getUserPreference() {
     	User currUser = auth.getCurrentUser();
     	System.out.println(currUser.getId());
     	UserPreferences userPreferencesInfo = profileDao.getValidUserPreferencesWithId(currUser.getId());
-    	if (userPreferencesInfo != null) {
-    		return userPreferencesInfo;
+    	if (profileDao.userHasPreferencesEntry(auth.getCurrentUser().getId()) == true) {
+    		return "{\"hasPreferences\":true}";
     	}
-		return userPreferencesInfo; 
+    	else {
+		return "{\"hasPreferences\":false}\""; 
+    	}
 }
     
     @RequestMapping(path = "/profile", method = RequestMethod.POST)
