@@ -11,16 +11,16 @@
             {{details.restaurants[restaurantNumber].restaurant.user_rating.aggregate_rating}} out of 5
           </h3>
           <h3 class="location">
-            <span class="location-object">Location:{{details.location}}</span>
-            
+            <span class="location-object">Location:</span>
+            {{details.location[restaurantNumber].restaurant.location}} 
           </h3>
           <h3>
-            <span class="cuisine-object">Cuisine:{{details.cuisine}}</span>
-            
+            <span class="cuisine-object">Cuisine:</span>
+            {{details.cuisine[restaurantNumber].restaurant.cuisine}}  
           </h3>
           <h3>
-            <span class="price-range">Price:{{details.price}}</span>
-            
+            <span class="price-range">Price:</span>
+            {{details.price[restaurantNumber].restaurant.price}}
           </h3>
         </div>
       </div>
