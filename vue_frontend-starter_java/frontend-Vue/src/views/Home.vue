@@ -5,6 +5,7 @@
     <p align="center">You must be authenticated to see this.</p>
   </div>
   </div>
+  
 </template>
 
 <script>
