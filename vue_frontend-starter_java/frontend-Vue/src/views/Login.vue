@@ -86,7 +86,7 @@ export default {
             .then((data) => {
               this.hasPreferences = data.hasPreferences
               if(this.hasPreferences) {
-                this.$router.push({ path: '/restaurants' })
+                this.$router.push({ path: '/' })
               }
               else {
                 this.$router.push({ path: '/profile' })

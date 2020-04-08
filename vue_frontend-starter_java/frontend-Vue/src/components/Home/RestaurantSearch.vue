@@ -40,11 +40,11 @@ export default {
           this.zipcode = userZipcode
       })
       .catch((err) => console.log(err))
-    fetch('https://developers.zomato.com/api/v2.1/cuisines?lat=41.480881&lon=-81.80036', {
+    fetch(`https://developers.zomato.com/api/v2.1/cuisines?lat=41.480881&lon=-81.80036`, {
               method: 'GET',
               headers: {
                 Accept: 'application/json',
-                'user-key': 'c1bbb3341d92fcff2ad26d1965e26008',
+                'user-key': '4c1372de3bf074d7157807284b3d747f',
               }
         })
         .then((response) =>{
