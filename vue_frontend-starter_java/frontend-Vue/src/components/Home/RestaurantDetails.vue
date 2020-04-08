@@ -20,7 +20,7 @@
           </h3>
           <h3>
             <span class="price-range">Price:</span>
-            {{details.price[restaurantNumber].restaurant.price}}
+            <span class="dollar-sign">{{dollarprice}}</span>
           </h3>
         </div>
       </div>
@@ -48,7 +48,17 @@ export default {
         DislikeButton,
         LikeButton
     },
-    
+    computed: {
+        dollarprice: function() {
+            let dollarsigns = "";
+            if (this.details && this.details.restaurants) {
+                for (
+                    let i = 0; i < this.details.restaurants[this.restaurantNumber].restaurant.price_range; i++) {
+          dollarsigns += "$";
+        }
+      }
+      return dollarsigns;
+    },
 
   data() {
         return {
@@ -57,8 +67,6 @@ export default {
         }
     },
  
-  computed: {
-    
   
   },
   methods: {
