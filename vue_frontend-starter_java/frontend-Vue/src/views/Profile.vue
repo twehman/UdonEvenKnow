@@ -107,7 +107,7 @@
      
 
        <input
-        type="text"
+        type="number"
         id="zipcode"
         class="zip"
         placeholder="Zipcode"
