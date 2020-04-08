@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,7 +46,10 @@ public class ProfileController {
     public String postUserPreference(@Valid @RequestBody UserPreferences userpref, BindingResult result, HttpServletRequest request) throws UserCreationException {
        System.out.println(request.getHeader("Authorization"));
        User currUser = auth.getCurrentUser();
-       System.out.println(currUser.getUsername());
+       System.out.println(auth.getCurrentUser().getId());
+       System.out.println(auth.getCurrentUser().getUsername());
+       System.out.println(userpref.getFirstName());
+       //System.out.println(currUser.getUsername());
        System.out.println(userpref.getAddressOne());
        UserPreferences currUserPreferences = profileDao.saveUserPreferences(currUser.getId(), userpref.getFirstName(), userpref.getLastName(), userpref.getAddressOne(), userpref.getAddressTwo(), userpref.getCity(), userpref.getState(), userpref.getZipCode());
        return "{\"success\":true}";

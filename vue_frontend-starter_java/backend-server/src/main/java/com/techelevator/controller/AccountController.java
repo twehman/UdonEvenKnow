@@ -1,5 +1,6 @@
 package com.techelevator.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import com.techelevator.authentication.AuthProvider;
@@ -8,6 +9,7 @@ import com.techelevator.authentication.UnauthorizedException;
 import com.techelevator.authentication.UserCreationException;
 import com.techelevator.model.JdbcUserPreferencesDao;
 import com.techelevator.model.User;
+import com.techelevator.model.UserPreferences;
 import com.techelevator.zipcode.JdbcZipcodeDao;
 import com.techelevator.zipcode.Zipcode;
 
@@ -58,6 +60,7 @@ public class AccountController {
         auth.register(user.getUsername(), user.getPassword(), user.getRole());
         return "{\"success\":true}";
     }
+    
     
     @RequestMapping(path = "/restaurants", method=RequestMethod.GET)
     public Zipcode getLatAndLong() {
