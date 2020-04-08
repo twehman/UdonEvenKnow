@@ -18,6 +18,8 @@ import com.techelevator.authentication.UserCreationException;
 import com.techelevator.model.JdbcUserPreferencesDao;
 import com.techelevator.model.User;
 import com.techelevator.model.UserPreferences;
+import com.techelevator.zipcode.JdbcZipcodeDao;
+import com.techelevator.zipcode.Zipcode;
 
 @RestController
 public class ProfileController {
@@ -30,6 +32,9 @@ public class ProfileController {
 	
     @Autowired
     private JdbcUserPreferencesDao profileDao;
+    
+    @Autowired
+    private JdbcZipcodeDao zipDao;
     
     @RequestMapping(path = "/profile", method = RequestMethod.GET)
     public String getUserPreference() {
@@ -55,5 +60,12 @@ public class ProfileController {
        UserPreferences currUserPreferences = profileDao.saveUserPreferences(currUser.getId(), userpref.getFirstName(), userpref.getLastName(), userpref.getAddressOne(), userpref.getAddressTwo(), userpref.getCity(), userpref.getState(), userpref.getZipCode());
        }
        return "{\"success\":true}";
+    }
+    
+    @RequestMapping(path = "/restaurants", method=RequestMethod.GET)
+    public Zipcode getLatAndLong() {
+    	User currUser = auth.getCurrentUser();
+    	Zipcode userZipInfo = zipDao.getLatandLongwithZip(profileDao.getValidUserPreferencesWithId(currUser.getId()).getZipCode());
+    	return userZipInfo;
     }
 }

@@ -20,8 +20,14 @@ export default {
 
   },
   created() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/restaurants`)
-      .then((response) => {
+      fetch(`${process.env.VUE_APP_REMOTE_API}/profile`, {
+              method: 'GET',
+              headers: new Headers({
+                Authorization: 'Bearer ' + auth.getToken(),
+              }),
+              credentials: 'same-origin',
+            })
+            .then((response) => {
           return response.json
       })
       .then((userZipInfo)=> {

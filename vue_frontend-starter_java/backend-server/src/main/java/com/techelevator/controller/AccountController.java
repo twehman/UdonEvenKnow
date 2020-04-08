@@ -61,19 +61,5 @@ public class AccountController {
         return "{\"success\":true}";
     }
     
-    
-    @RequestMapping(path = "/restaurants", method=RequestMethod.GET)
-    public Zipcode getLatAndLong() {
-    	User currUser = auth.getCurrentUser();
-    	Zipcode userZipInfo = zipDao.getLatandLongwithZip(profileDao.getValidUserPreferencesWithId(currUser.getId()).getZipCode());
-    	if (userZipInfo != null) {
-    		return userZipInfo;
-    	}
-    	else {
-    		Zipcode noCode = new Zipcode();
-    		noCode.setZip(99999);
-    		return noCode;
-    	}
-    }
 
 }
