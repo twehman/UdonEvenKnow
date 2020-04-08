@@ -1,6 +1,6 @@
 <template>
 <div>
-<p v-for="item in cuisines">{{item}} </p>
+<input type="checkbox" v-for="item in cuisines">{{item}} </p>
 </div>
 </template>
 
