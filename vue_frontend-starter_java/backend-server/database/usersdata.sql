@@ -4,7 +4,7 @@ drop table if exists users_data;
 
 create table users_data (
 users_id serial PRIMARY KEY
-,id integer NOT NULL
+,id integer NOT NULL UNIQUE
 ,first_name varchar NOT NULL
 ,last_name varchar NOT NULL
 ,address_one varchar NOT NULL
