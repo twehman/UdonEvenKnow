@@ -1,10 +1,11 @@
 <template>
 <div>
-<p>{{this.latitude}} </p>
+<p>{{this.zipcode.latitude}} </p>
 </div>
 </template>
 
 <script>
+import auth from '@/auth'
 export default {
   name: 'restaurants',
   data() {
@@ -14,6 +15,7 @@ export default {
         latitude: '',
         longitude: '',
       },
+      userinf: [],
     };
   },
   methods: {
@@ -28,15 +30,18 @@ export default {
               credentials: 'same-origin',
             })
             .then((response) => {
-          return response.json
-      })
-      .then((userZipInfo)=> {
-          if(userZipInfo.zip === 99999) {
+                if(response.ok){
+          return response.json()
+                }
+        })
+      .then((userZipcode)=> {
+          this.zipcode = userZipcode
+          if(userZipcode.zip === 99999) {
               this.$router.push({ path: '/login'})
           }
-          this.zip = userZipInfo.zip
-          this.latitude = userZipInfo.latitude
-          this.longitude = userZipInfo.longitude
+          this.zipcode.zip = userZipcode.zip
+          this.zipcode.latitude = userZipcode.latitude
+          this.zipcode.longitude = userZipcode.longitude
       })
       .catch((err) => console.log(err))
 
