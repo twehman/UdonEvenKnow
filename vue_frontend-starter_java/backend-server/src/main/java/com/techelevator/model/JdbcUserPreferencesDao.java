@@ -100,8 +100,9 @@ public class JdbcUserPreferencesDao implements UserPreferencesDao {
 
 	@Override
 	public boolean userHasPreferencesEntry(long id) {
-		String sqlQuery = "EXISTS(SELECT id from  users_data where id = ?";
-		return jdbcTemplate.queryForObject(sqlQuery, Boolean.class, id);
+		String sqlQuery = "SELECT COUNT(*) from users_data where id=?";
+		Integer count =  jdbcTemplate.queryForObject(sqlQuery, Integer.class, id);
+		return (count != null && count > 0);
 	}
 
 
