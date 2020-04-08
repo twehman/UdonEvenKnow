@@ -47,6 +47,7 @@ export default {
         password: '',
       },
       invalidCredentials: false,
+      hasPreferences: false
     };
   },
   methods: {
@@ -80,13 +81,17 @@ export default {
               credentials: 'same-origin',
             })
             .then((response) => {
-              if (response.ok) {
+              return response.json()
+            })
+            .then((data) => {
+              this.hasPreferences = data.hasPreferences
+              if(this.hasPreferences) {
                 this.$router.push({ path: '/restaurants' })
-              } else {
-          // no reason to be here send them back to the list view
-          this.$router.push({ path: '/' });
-        }
-      })
+              }
+              else {
+                this.$router.push({ path: '/profile' })
+              }
+            })
           }
         })
         .catch((err) => console.error(err));
