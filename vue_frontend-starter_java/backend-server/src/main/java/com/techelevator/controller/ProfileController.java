@@ -40,7 +40,7 @@ public class ProfileController {
     		return "{\"hasPreferences\":true}";
     	}
     	else {
-		return "{\"hasPreferences\":false}\""; 
+		return "{\"hasPreferences\":false}"; 
     	}
 }
     
