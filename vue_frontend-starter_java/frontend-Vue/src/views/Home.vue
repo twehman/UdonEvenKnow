@@ -2,10 +2,10 @@
 <div class="main">
     <h1 class="sign" align="center">Welcome to Restaurant Tinder</h1>
 <div class="pref">
-  Restaurant search
+  Restaurant search, will make prettier
 </div>
 <div class="pref">
-Restaurant details
+Restaurant details, will make prettier
 </div>
 <div class="pref">
 </div>
