@@ -37,8 +37,14 @@ import auth from '@/auth'
 export default {
   name: "RestaurantSummary",
   props: {
-    summaries: Object
+    
   },
+  data() {
+        return {
+            restaurants: [],
+            apiUrl: ""
+        }
+    },
   components: {
     
   },
@@ -49,6 +55,16 @@ export default {
   methods: {
     
   },
+      created(){
+fetch(this.apiUrl)
+.then(response=>{
+  return response.json();
+}).then(data=>{
+  this.groceries= data
+}).catch(err=>{
+  console.log(err);
+})
+}
  
 };
 </script>
