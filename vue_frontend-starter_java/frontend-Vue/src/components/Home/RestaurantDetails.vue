@@ -1,25 +1,25 @@
 <template>
-  <div class="restaurant-summaries">
-    <div class="summary" v-for="summaries in restaurants" :key="">
+  <div class="restaurant-details">
+    <div class="details" v-for="details in restaurants" :key="">
       <div class="featuredimage">
         <img :src="#">
       <div class="text-infor">
         <div class="text-container" id="text-info">
-          <h3 class="name">{{summaries.name}}</h3>
+          <h3 class="name">{{details.name}}</h3>
           <h3 class="rating">
-            <span class="rating-object">Rating:{{summaries.rating}}</span>
+            <span class="rating-object">Rating:{{details.rating}}</span>
             
           </h3>
           <h3 class="location">
-            <span class="location-object">Location:{{summaries.location}}</span>
+            <span class="location-object">Location:{{details.location}}</span>
             
           </h3>
           <h3>
-            <span class="cuisine-object">Cuisine:{{summaries.cuisine}}</span>
+            <span class="cuisine-object">Cuisine:{{details.cuisine}}</span>
             
           </h3>
           <h3>
-            <span class="price-range">Price:{{summaries.price}}</span>
+            <span class="price-range">Price:{{details.price}}</span>
             
           </h3>
         </div>
@@ -37,7 +37,7 @@ import DislikeButton from "@/components/Home/DislikeButton.vue";
 import LikeButton from "@/components/Home/LikeButton.vue";
 
 export default {
-  name: "RestaurantSummary",
+  name: "RestaurantDetails",
   props: {
     
   },
