@@ -1,5 +1,6 @@
 package com.techelevator.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import com.techelevator.authentication.AuthProvider;
@@ -8,6 +9,7 @@ import com.techelevator.authentication.UnauthorizedException;
 import com.techelevator.authentication.UserCreationException;
 import com.techelevator.model.JdbcUserPreferencesDao;
 import com.techelevator.model.User;
+import com.techelevator.model.UserPreferences;
 import com.techelevator.zipcode.JdbcZipcodeDao;
 import com.techelevator.zipcode.Zipcode;
 
@@ -57,6 +59,17 @@ public class AccountController {
         }
         auth.register(user.getUsername(), user.getPassword(), user.getRole());
         return "{\"success\":true}";
+    }
+    
+    @RequestMapping(path = "/profile", method = RequestMethod.POST)
+    public String postUserPreference(@Valid @RequestBody UserPreferences userpref, BindingResult result, HttpServletRequest request) throws UserCreationException {
+       System.out.println(request.getHeader("Authorization"));
+       System.out.println(auth.getCurrentUser().getId());
+       System.out.println(auth.getCurrentUser().getUsername());
+       //System.out.println(currUser.getUsername());
+       System.out.println(userpref.getAddressOne());
+       UserPreferences currUserPreferences = profileDao.saveUserPreferences(1, userpref.getFirstName(), userpref.getLastName(), userpref.getAddressOne(), userpref.getAddressTwo(), userpref.getCity(), userpref.getState(), userpref.getZipCode());
+       return "{\"success\":true}";
     }
     
     @RequestMapping(path = "/restaurants", method=RequestMethod.GET)

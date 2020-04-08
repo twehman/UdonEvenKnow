@@ -151,10 +151,10 @@ export default {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: auth.getToken(),
+          Authorization: 'Bearer ' + auth.getToken(),
           User: auth.getUser()
         },
-        body: JSON.stringify(this.userPreferences),
+        body: JSON.stringify(this.userPreferences)
       })
         .then((response) => {
           if (response.ok) {
