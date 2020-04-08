@@ -2,15 +2,21 @@
 <div class="main">
   <div class="home">
     <h1 class="sign" align="center">Welcome to Restaurant Tinder</h1>
-    <p align="center">You must be authenticated to see this.</p>
   </div>
   </div>
   
 </template>
 
 <script>
+import LikeButton from './components/Home/LikeButton.vue';
+import DislikeButton from './components/Home/DislikeButton.vue';
+
 export default {
-  name: 'home'
+  name: 'home',
+  components: {
+    LikeButton,
+    DislikeButton
+}
 }
 </script>
 
@@ -36,4 +42,5 @@ body {
         font-weight: bold;
         font-size: 50px;
     }
+
 </style>

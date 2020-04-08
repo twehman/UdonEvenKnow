@@ -16,4 +16,7 @@ export default {
 </script>
 
 <style>
+div.like-container {
+  display: inline-block;
+}
 </style>
