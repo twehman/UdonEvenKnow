@@ -20,8 +20,6 @@ import com.techelevator.model.User;
 import com.techelevator.model.UserPreferences;
 
 @RestController
-@RequestMapping("/profile")
-@CrossOrigin
 public class ProfileController {
 
 	@Autowired
@@ -33,7 +31,7 @@ public class ProfileController {
     @Autowired
     private JdbcUserPreferencesDao profileDao;
     
-    @RequestMapping(path = "/", method = RequestMethod.GET)
+    @RequestMapping(path = "/profile", method = RequestMethod.GET)
     public UserPreferences getUserPreference() {
     	User currUser = auth.getCurrentUser();
     	System.out.println(currUser.getId());
@@ -44,15 +42,16 @@ public class ProfileController {
 		return userPreferencesInfo; 
 }
     
-    @RequestMapping(path = "/", method = RequestMethod.POST)
+    @RequestMapping(path = "/profile", method = RequestMethod.POST)
     public String postUserPreference(@Valid @RequestBody UserPreferences userpref, BindingResult result, HttpServletRequest request) throws UserCreationException {
        System.out.println(request.getHeader("Authorization"));
+       User currUser = auth.getCurrentUser();
        System.out.println(auth.getCurrentUser().getId());
        System.out.println(auth.getCurrentUser().getUsername());
        System.out.println(userpref.getFirstName());
        //System.out.println(currUser.getUsername());
        System.out.println(userpref.getAddressOne());
-       UserPreferences currUserPreferences = profileDao.saveUserPreferences(1, userpref.getFirstName(), userpref.getLastName(), userpref.getAddressOne(), userpref.getAddressTwo(), userpref.getCity(), userpref.getState(), userpref.getZipCode());
+       UserPreferences currUserPreferences = profileDao.saveUserPreferences(currUser.getId(), userpref.getFirstName(), userpref.getLastName(), userpref.getAddressOne(), userpref.getAddressTwo(), userpref.getCity(), userpref.getState(), userpref.getZipCode());
        return "{\"success\":true}";
     }
 }

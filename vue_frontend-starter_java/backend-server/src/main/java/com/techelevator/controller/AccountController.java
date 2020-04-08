@@ -61,16 +61,6 @@ public class AccountController {
         return "{\"success\":true}";
     }
     
-    @RequestMapping(path = "/profile", method = RequestMethod.POST)
-    public String postUserPreference(@Valid @RequestBody UserPreferences userpref, BindingResult result, HttpServletRequest request) throws UserCreationException {
-       System.out.println(request.getHeader("Authorization"));
-       System.out.println(auth.getCurrentUser().getId());
-       System.out.println(auth.getCurrentUser().getUsername());
-       //System.out.println(currUser.getUsername());
-       System.out.println(userpref.getAddressOne());
-       UserPreferences currUserPreferences = profileDao.saveUserPreferences(1, userpref.getFirstName(), userpref.getLastName(), userpref.getAddressOne(), userpref.getAddressTwo(), userpref.getCity(), userpref.getState(), userpref.getZipCode());
-       return "{\"success\":true}";
-    }
     
     @RequestMapping(path = "/restaurants", method=RequestMethod.GET)
     public Zipcode getLatAndLong() {

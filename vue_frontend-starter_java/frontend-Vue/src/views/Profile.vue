@@ -26,7 +26,7 @@
         id="address1"
         class="add1"
         placeholder="Address 1"
-        v-model="userPreferences.address1"
+        v-model="userPreferences.addressOne"
         required
       />
       <input
@@ -34,7 +34,7 @@
         id="address2"
         class="pass"
         placeholder="Address 2"
-        v-model="userPreferences.address2"
+        v-model="userPreferences.addressTwo"
         
       />
       
@@ -134,11 +134,11 @@ export default {
       userPreferences: {
         firstName: '',
         lastName: '',
-        address1: '',
-        address2: '',
+        addressOne: '',
+        addressTwo: '',
         city: '',
         state: '',
-        zipcode: '',
+        zipCode: '',
       },
       
       
