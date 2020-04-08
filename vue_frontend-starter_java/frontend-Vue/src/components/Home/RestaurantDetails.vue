@@ -25,7 +25,10 @@
         </div>
       </div>
     </div>
-   
+   <div id="buttons">
+       <dislike-button v-on:Dislike="dislikeRestaurant" v-if:="details.restaurants"/>
+       <like-button v-on:Like="likeRestaurant" v-if:="details.restaurants"/>
+   </div>
    
   </div>
   </div>
