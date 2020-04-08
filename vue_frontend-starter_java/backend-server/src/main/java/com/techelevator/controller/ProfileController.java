@@ -46,14 +46,14 @@ public class ProfileController {
     
     @RequestMapping(path = "/profile", method = RequestMethod.POST)
     public String postUserPreference(@Valid @RequestBody UserPreferences userpref, BindingResult result, HttpServletRequest request) throws UserCreationException {
-       System.out.println(request.getHeader("Authorization"));
        User currUser = auth.getCurrentUser();
-       System.out.println(auth.getCurrentUser().getId());
-       System.out.println(auth.getCurrentUser().getUsername());
-       System.out.println(userpref.getFirstName());
-       //System.out.println(currUser.getUsername());
-       System.out.println(userpref.getAddressOne());
+       if (profileDao.userHasPreferencesEntry(auth.getCurrentUser().getId()) == true) {
+          UserPreferences currUserPreferences = profileDao.changeUserPreferences(currUser.getId(), userpref.getFirstName(), userpref.getLastName(), userpref.getAddressOne(), userpref.getAddressTwo(), userpref.getCity(), userpref.getState(), userpref.getZipCode());
+
+       }
+       else {
        UserPreferences currUserPreferences = profileDao.saveUserPreferences(currUser.getId(), userpref.getFirstName(), userpref.getLastName(), userpref.getAddressOne(), userpref.getAddressTwo(), userpref.getCity(), userpref.getState(), userpref.getZipCode());
+       }
        return "{\"success\":true}";
     }
 }

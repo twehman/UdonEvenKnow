@@ -73,16 +73,16 @@ export default {
             }
             auth.saveToken(token);
             fetch(`${process.env.VUE_APP_REMOTE_API}/profile`, {
-            method: 'GET',
-            headers: new Headers({
-        Authorization: 'Bearer ' + auth.getToken(),
-      }),
-      credentials: 'same-origin',
-    })
-      .then((response) => {
-        if (response.ok) {
-          this.$router.push({ path: '/restaurants' })
-        } else {
+              method: 'GET',
+              headers: new Headers({
+                Authorization: 'Bearer ' + auth.getToken(),
+              }),
+              credentials: 'same-origin',
+            })
+            .then((response) => {
+              if (response.ok) {
+                this.$router.push({ path: '/restaurants' })
+              } else {
           // no reason to be here send them back to the list view
           this.$router.push({ path: '/' });
         }
