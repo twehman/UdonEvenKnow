@@ -1,13 +1,15 @@
 <template>
-<div>
-<input type="checkbox" v-for="item in cuisines">{{item}} </p>
-</div>
+<RestaurantSearch></RestaurantSearch>
 </template>
 
 <script>
 import auth from '@/auth'
+import RestaurantSearch from '@/components/Home/RestaurantSearch.vue'
 export default {
   name: 'restaurants',
+  components: {
+      RestaurantSearch
+  },
   data() {
     return {
       zipcode: {

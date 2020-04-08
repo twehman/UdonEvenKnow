@@ -1,13 +1,16 @@
 <template>
 <div>
-<input type="checkbox" v-for="item in cuisines">{{item}} </p>
+    <div v-for="item in cuisines.cuisines" id="selectedCuisines">
+        <input type="checkbox" :id="item.cuisine.cuisine_name" :name="item.cuisine.cuisine_name" :value="item.cuisine.cuisine_id" v-model="selectedCuisines">
+        <label :for="item.cuisine.cuisine_name"> {{item.cuisine.cuisine_name}}</label>
+    </div>
 </div>
 </template>
 
 <script>
 import auth from '@/auth'
 export default {
-  name: 'restaurants',
+  name: 'restaurant-search',
   data() {
     return {
       zipcode: {
@@ -15,7 +18,8 @@ export default {
         latitude: '',
         longitude: '',
       },
-      cuisines: []
+      cuisines: [],
+      selectedCuisines: []
     };
   },
   methods: {
@@ -56,5 +60,10 @@ export default {
 </script>
 
 <style>
+#selectedCuisines {
+    display: inline-flex;
+    width: 20%;
+
+}
 </style>
 
