@@ -2,7 +2,7 @@
 <div class="main">
     <h1 class="sign" align="center">Welcome to Restaurant Tinder</h1>
 <div class="pref">
-  Restaurant search, will make prettier
+  <restaurant-search></restaurant-search>
 </div>
 <div class="pref">
 Restaurant details, will make prettier
