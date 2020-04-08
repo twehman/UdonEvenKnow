@@ -1,21 +1,25 @@
 <template>
 <div class="main">
-  <div class="home">
     <h1 class="sign" align="center">Welcome to Restaurant Tinder</h1>
-  </div>
+<div class="pref">
+  Restaurant search
+</div>
+<div class="pref">
+Restaurant details
+</div>
+<div class="pref">
+</div>
   </div>
   
 </template>
 
 <script>
-import LikeButton from './components/Home/LikeButton.vue';
-import DislikeButton from './components/Home/DislikeButton.vue';
+import Buttons from '@/components/Home/Buttons.vue';
 
 export default {
   name: 'home',
   components: {
-    LikeButton,
-    DislikeButton
+    Buttons
 }
 }
 </script>
@@ -29,7 +33,7 @@ body {
     .main {
         background-color: #FFFFFF;
         width: 800px;
-        height: 500px;
+        height: 800px;
         margin: 7em auto;
         border-radius: 1.5em;
         box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
@@ -41,6 +45,13 @@ body {
         font-family: sans-serif;
         font-weight: bold;
         font-size: 50px;
+    }
+
+    .pref {
+      background-color: #D3D3D3;
+      text-align: center;
+      box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+      margin-top: 20px;
     }
 
 </style>
