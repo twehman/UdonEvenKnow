@@ -1,113 +1,46 @@
 <template>
-
-<div class="restaurant-details">
-    
-    <div class="details" v-if="details.restaurants" :key="restaurantNumber">
-      <div class="featuredimage">
-        <img :src="getImage">
-      <div class="text-infor">
-        <div class="text-container" id="text-info">
-          <h3 class="name">{{details.restaurants[restaurantNumber].restaurant.name}}</h3>
-          <h3 class="rating">
-            <span class="rating-object">Rating:</span>
-            {{details.restaurants[restaurantNumber].restaurant.user_rating.aggregate_rating}} out of 5
-          </h3>
-          <h3 class="location">
-            <span class="location-object">Location:</span>
-            {{details.location[restaurantNumber].restaurant.location}} 
-          </h3>
-          <h3>
-            <span class="cuisine-object">Cuisine:</span>
-            {{details.cuisine[restaurantNumber].restaurant.cuisine}}  
-          </h3>
-          <h3>
-            <span class="price-range">Price:</span>
-            <span class="dollar-sign">{{dollarprice}}</span>
-          </h3>
-        </div>
-      </div>
-    </div>
-    
-   <div id="buttons">
-       <dislike-button v-on:Dislike="dislikeRestaurant" v-if:="details.restaurants"/>
-       <like-button v-on:Like="likeRestaurant" v-if:="details.restaurants"/>
-   </div>
-   
+<b-container>
+<div class="main">
+    <h1 class="sign" align="center">Welcome to Dinder</h1>
+<div class="pref">
+  <restaurant-search v-bind:zipcode="zipcode"></restaurant-search>
+</div>
+<div class="pref">
+<restaurant-details></restaurant-details>
+</div>
+<div class="pref">
+</div>
   </div>
-  </div>
+  </b-container>
 </template>
 
-<!-- Let's implement B-cards for the restaurant details? I will change once everything works -SC
-<div>
-  <b-card
-    title="Card Title"
-    img-src="https://picsum.photos/600/300/?image=25"
-    img-alt="Image"
-    img-top
-    tag="article"
-    style="max-width: 20rem;"
-    class="mb-2"
-  >
-    <b-card-text>
-      Some quick example text to build on the card title and make up the bulk of the card's content.
-    </b-card-text>
-
-    <b-button href="#" variant="primary">Go somewhere</b-button>
-  </b-card>
-</div>
--->
-
 <script>
-import auth from '@/auth';
-import DislikeButton from "@/components/Home/DislikeButton.vue";
-import LikeButton from "@/components/Home/LikeButton.vue";
-
+import RestaurantSearch from "@/components/Home/RestaurantSearch.vue";
+import RestaurantDetails from "@/components/Home/RestaurantDetails.vue";
+import auth from '@/auth'
 export default {
-    name: "RestaurantDetails",
-    props: {
-        details: Object
-    },
-    components: {
-        DislikeButton,
-        LikeButton
-    },
-    computed: {
-        dollarprice: function() {
-            let dollarsigns = "";
-            if (this.details && this.details.restaurants) {
-                for (
-                    let i = 0; i < this.details.restaurants[this.restaurantNumber].restaurant.price_range; i++) {
-          dollarsigns += "$";
-        }
-      }
-      return dollarsigns;
-    },
-       getImage() {
-      let thisRestaurant = this.details.restaurants[this.restaurantNumber].restaurant;
-      if (
-        thisRestaurant.featured_image
-      ) {
-        return thisRestaurant.featured_image;
-      } 
-      return "https://via.placeholder.com/1200x464";
-    }
-  },
-  
+  name: 'home',
+  components: {
+    RestaurantSearch,
+    RestaurantDetails
+},
 
-  data() {
-        return {
-            restaurantNumber: 0,
-            restaurants: [ ]
-        }
-    },
- 
-  
-  
-  methods: {
-    
-  },
-      created() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/restaurants`, {
+data() {
+  return {
+    zipcode: {
+        zip: '',
+        latitude: '',
+        longitude: '',
+      },
+    details: []
+
+  };
+},
+    methods: {
+      //performSearch?
+        }, 
+  created() {
+    fetch(`${process.env.VUE_APP_REMOTE_API}/restaurants`, {
               method: 'GET',
               headers: new Headers({
                 Authorization: 'Bearer ' + auth.getToken(),
@@ -121,25 +54,33 @@ export default {
           this.zipcode = userZipcode
       })
       .catch((err) => console.log(err))
-    fetch(`https://developers.zomato.com/api/v2.1/search?lat=41.480881&lon=-81.80036`, {
-              method: 'GET',
-              headers: {
-                Accept: 'application/json',
-                'user-key': '4c1372de3bf074d7157807284b3d747f',
-              }
-        })
-        .then((response) =>{
-            return response.json()
-        })
-        .then((data) => {
-            this.restaurants = data
-        })
-        .catch((err) => console.log(err))
-
-}
-};
+  }
+  };
 </script>
 
-<style>
+<style scoped>
+    .main {
+        background-color: #FFFFFF;
+        width: 800px;
+        height: 800px;
+        margin: 7em auto;
+        border-radius: 1.5em;
+        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    }
+
+    .sign {
+        padding-top: 40px;
+        color: #003459;
+        font-family: sans-serif;
+        font-weight: bold;
+        font-size: 50px;
+    }
+
+    .pref {
+      background-color: #007EA7;
+      text-align: center;
+      box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+      margin-top: 20px;
+    }
 
 </style>
