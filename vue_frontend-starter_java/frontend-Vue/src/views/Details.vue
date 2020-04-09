@@ -1,10 +1,34 @@
 <template>
   <div class="restaurant-details">
-    <div class="details">
-      <p v-for="details in testArray">{{details.restaurant.cuisines}}</p>
+    <div class="details" v-for="details in testArray">
+      <h3 class="name">
+        <span class="name-object">Name:</span>
+        {{details.restaurant.name}}
+      </h3>
+      <h3 class="location">
+        <span class="location-object">Location:</span>
+        {{details.restaurant.location.address}}
+      </h3>
+       <h3 class="hours">
+        <span class="hours-object">Hours:</span>
+        {{details.restaurant.timings}}
+      </h3>
+      <h3 class="rating">
+        <span class="rating-object">Rating:</span>
+        {{details.restaurant.user_rating.aggregate_rating}} out of 5
+      </h3>
+      <h3 class="cuisine">
+        <span class="cuisine-object">Cuisine:</span>
+        {{details.restaurant.cuisines}}
+      </h3>
     </div>
+    <div id="buttons">
+    <dislike-button v-on:Dislike="dislikeRestaurant" v-if:="details.restaurants"/>
+    <like-button v-on:Like="likeRestaurant" v-if:="details.restaurants"/>
+   </div>
   </div>
-  </template>
+  
+  
   <!--
       <div class="featuredimage">
         <img :src="getImage">
@@ -58,6 +82,7 @@
   </b-card>
 </div>
 -->
+</template>
 
 <script>
 import auth from '@/auth';
@@ -78,7 +103,7 @@ export default {
             let dollarsigns = "";
             if (this.details && this.details.restaurants) {
                 for (
-                    let i = 0; i < this.details.restaurants[this.restaurantNumber].restaurant.price_range; i++) {
+                    let i = 0; i < this.details.restaurants.price_range; i++) {
           dollarsigns += "$";
         }
       }
