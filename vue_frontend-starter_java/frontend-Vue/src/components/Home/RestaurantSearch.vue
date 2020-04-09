@@ -13,7 +13,7 @@
     -->
 
     <!-- TOM'S CODE THAT WORKS -->
-      <div v-for="item in cuisines.cuisines" id="selectedCuisines">
+      <div v-for="item in getItems()" id="selectedCuisines">
         <input type="checkbox" :id="item.cuisine.cuisine_name" :name="item.cuisine.cuisine_name" :value="item.cuisine.cuisine_id" v-model="selectedCuisines">
         <label :for="item.cuisine.cuisine_name"> {{item.cuisine.cuisine_name}}</label>
     </div>
@@ -36,7 +36,25 @@ export default {
     };
   },
   methods: {
-
+      getItems: function() {
+          let returnArray = []
+          let params = new URLSearchParams({"lat" : this.$props.zipcode.latitude , "lon" : this.$props.zipcode.longitude});
+    fetch(`https://developers.zomato.com/api/v2.1/cuisines?${params.toString()}`, {
+              method: 'GET',
+              headers: {
+                Accept: 'application/json',
+                'user-key': 'c1bbb3341d92fcff2ad26d1965e26008',
+              }
+        })
+        .then((response) =>{
+            return response.json()
+        })
+        .then((data) => {
+            returnArray = data
+        })
+        .catch((err) => console.log(err))
+        return returnArray
+      }
   },
   created() {
       /* console.log(this.zipcode.latitude)
@@ -56,7 +74,7 @@ export default {
       })
       .catch((err) => console.log(err)) 
     */
-    let params = new URLSearchParams({"lat" : this.$props.zipcode.latitude , "lon" : this.$props.zipcode.longitude});
+   /* let params = new URLSearchParams({"lat" : this.$props.zipcode.latitude , "lon" : this.$props.zipcode.longitude});
     fetch(`https://developers.zomato.com/api/v2.1/cuisines?${params.toString()}`, {
               method: 'GET',
               headers: {
@@ -71,7 +89,7 @@ export default {
             this.cuisines = data
         })
         .catch((err) => console.log(err))
-
+*/
 }
 }
 </script>
