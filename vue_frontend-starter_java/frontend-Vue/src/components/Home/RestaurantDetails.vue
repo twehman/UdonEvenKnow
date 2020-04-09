@@ -79,30 +79,61 @@ export default {
       }
       return dollarsigns;
     },
+       getImage() {
+      let thisRestaurant = this.details.restaurants[this.restaurantNumber].restaurant;
+      if (
+        thisRestaurant.featured_image
+      ) {
+        return thisRestaurant.featured_image;
+      } 
+      return "https://via.placeholder.com/1200x464";
+    }
+  },
+  
 
   data() {
         return {
-            restaurants: [],
-            apiUrl: ""
+            restaurantNumber: 0,
+            restaurants: []
         }
     },
  
   
-  },
+  
   methods: {
     
   },
-      created(){
-fetch(this.apiUrl)
-.then(response=>{
-  return response.json();
-}).then(data=>{
-  this.groceries= data
-}).catch(err=>{
-  console.log(err);
-})
+      created() {
+      fetch(`${process.env.VUE_APP_REMOTE_API}/restaurants`, {
+              method: 'GET',
+              headers: new Headers({
+                Authorization: 'Bearer ' + auth.getToken(),
+              }),
+              credentials: 'same-origin',
+            })
+            .then((response) => {
+          return response.json()
+        })
+      .then((userZipcode)=> {
+          this.zipcode = userZipcode
+      })
+      .catch((err) => console.log(err))
+    fetch(`https://developers.zomato.com/api/v2.1/search?lat=41.480881&lon=-81.80036`, {
+              method: 'GET',
+              headers: {
+                Accept: 'application/json',
+                'user-key': '4c1372de3bf074d7157807284b3d747f',
+              }
+        })
+        .then((response) =>{
+            return response.json()
+        })
+        .then((data) => {
+            this.restaurants = data
+        })
+        .catch((err) => console.log(err))
+
 }
- 
 };
 </script>
 
