@@ -6,6 +6,7 @@ import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import Profile from './views/Profile.vue'
 import Restaurants from './views/Restaurants.vue'
+import Details from './views/Details.vue'
 
 Vue.use(Router)
 
@@ -62,7 +63,15 @@ const router = new Router({
         meta: {
           requiresAuth: false
         }
-      } 
+      },
+      {
+        path: "/details",
+        name: "details",
+        component: Details,
+        meta: {
+          requiresAuth: false
+        }
+      }  
     
   ]
 })

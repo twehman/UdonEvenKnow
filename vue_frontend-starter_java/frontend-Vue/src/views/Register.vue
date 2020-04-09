@@ -3,33 +3,33 @@
 <div class="home">
   <div id="register" class="text-center">
     <b-form class="form-register" @submit.prevent="register">
-      <h1 class="sign" align="center">Create Account</h1>
+      <p><h1 class="sign" align="center">Create Account</h1></p>
       <b-alert show variant="danger" v-if="registrationErrors" align="center">
         There were problems registering this user.
       </b-alert>
-      <b-form-input
+      <p><b-form-input
         type="text"
         id="username"
         placeholder="Username"
         v-model="user.username"
         required
         autofocus
-      />
-      <b-form-input
+      /></p>
+      <p><b-form-input
         type="password"
         id="password"
         placeholder="Password"
         v-model="user.password"
         required
-      />
-      <b-form-input
+      /></p>
+      <p><b-form-input
         type="password"
         id="confirmPassword"
         placeholder="Confirm Password"
         v-model="user.confirmPassword"
         required
-      />
-      <p align="center"><b-button variant="primary" type="submit">
+      /></p>
+      <p align="center"><b-button variant="outline-primary" type="submit">
         Create Account
       </b-button></p>
       <p align="center"><router-link :to="{ name: 'login' }">
@@ -104,12 +104,6 @@ export default {
     .un:focus, .pass:focus {
         border: 2px solid rgba(0, 0, 0, 0.18) !important;
         
-    }
-    
-    a {
-        text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
-        color: #E1BEE7;
-        text-decoration: none
     }
     
     @media (max-width: 600px) {

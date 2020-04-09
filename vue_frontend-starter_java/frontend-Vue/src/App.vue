@@ -7,6 +7,7 @@
       <b-nav-item><router-link to="/register">Register</router-link></b-nav-item>
       <b-nav-item><router-link to="/profile">Profile</router-link></b-nav-item>
       <b-nav-item><router-link to="/restaurants">Restaurants</router-link></b-nav-item>
+      <b-nav-item><router-link to="/details">Details</router-link></b-nav-item>
     </b-nav>
     </header>
     <router-view/>
