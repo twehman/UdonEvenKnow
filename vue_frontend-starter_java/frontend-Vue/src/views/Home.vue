@@ -3,6 +3,7 @@
 <div class="main">
     <h1 class="sign" align="center">Welcome to Restaurant Tinder</h1>
 <div class="pref">
+    <p><h2 class="h2" align="left"> Select your preferred cuisine types:</h2></p>
   <restaurant-search v-bind:zipcode="zipcode"></restaurant-search>
 </div>
 <div class="pref">
@@ -77,10 +78,19 @@ data() {
     }
 
     .pref {
-      background-color: #007EA7;
+      background-color: #8EA8C3;
       text-align: center;
       box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
       margin-top: 20px;
     }
+
+    .h2 {
+        padding-top: 10px;
+        padding-left: 10px;
+        color: #FFFFFF;
+        font-family: sans-serif;
+        font-weight: bold;
+        font-size: 25px;
+}
 
 </style>
