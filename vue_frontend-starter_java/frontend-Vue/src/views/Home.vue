@@ -3,7 +3,7 @@
 <div class="main">
     <h1 class="sign" align="center">Welcome to Restaurant Tinder</h1>
 <div class="pref">
-  <restaurant-search></restaurant-search>
+  <restaurant-search v-bind:zipcode="zipcode"></restaurant-search>
 </div>
 <div class="pref">
 <restaurant-details></restaurant-details>
@@ -17,7 +17,7 @@
 <script>
 import RestaurantSearch from "@/components/Home/RestaurantSearch.vue";
 import RestaurantDetails from "@/components/Home/RestaurantDetails.vue";
-
+import auth from '@/auth'
 export default {
   name: 'home',
   components: {
@@ -27,12 +27,34 @@ export default {
 
 data() {
   return {
+    zipcode: {
+        zip: '',
+        latitude: '',
+        longitude: '',
+      },
     details: []
+
   };
 },
     methods: {
       //performSearch?
-        }
+        }, 
+  created() {
+    fetch(`${process.env.VUE_APP_REMOTE_API}/restaurants`, {
+              method: 'GET',
+              headers: new Headers({
+                Authorization: 'Bearer ' + auth.getToken(),
+              }),
+              credentials: 'same-origin',
+            })
+            .then((response) => {
+          return response.json()
+        })
+      .then((userZipcode)=> {
+          this.zipcode = userZipcode
+      })
+      .catch((err) => console.log(err))
+  }
   };
 </script>
 
