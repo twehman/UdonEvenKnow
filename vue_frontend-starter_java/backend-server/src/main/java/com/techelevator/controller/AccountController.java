@@ -61,5 +61,16 @@ public class AccountController {
         return "{\"success\":true}";
     }
     
+    @RequestMapping(path = "/logout", method = RequestMethod.POST)
+    public String logout() throws UnauthorizedException {
+        if (auth.getCurrentUser() != null) {
+            auth.logOff();
+            return "{\"success\":true}";
+        }
+        else {
+        	return "{\"success\":false}";
+        }
+    }
+    
 
 }
