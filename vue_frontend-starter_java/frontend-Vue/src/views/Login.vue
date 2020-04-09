@@ -2,30 +2,30 @@
 <b-container>
 <div class="home">
     <b-form class="form-signin" @submit.prevent="login">
-      <h1 class="sign" align="center">Please Sign In</h1>
+      <p><h1 class="sign" align="center">Please Sign In</h1></p>
       <b-alert show variant="danger" v-if="invalidCredentials" align="center">
         Invalid username and password!
       </b-alert>
       <b-alert show variant="success" v-if="this.$route.query.registration" align="center"> 
         Thank you for registering, please sign in.
       </b-alert>
-      <b-form-input
+      <p><b-form-input
         type="text"
         id="username"
         placeholder="Username"
         v-model="user.username"
         required
         autofocus
-      />
+      /></p>
 
-      <b-form-input
+      <p><b-form-input
         type="password"
         id="password"
         placeholder="Password"
         v-model="user.password"
         required
-      />
-      <p align="center"><b-button variant="primary" type="submit">Sign in</b-button></p>
+      /></p>
+      <p align="center"><b-button variant="outline-primary" type="submit">Sign in</b-button></p>
       <p align="center"><router-link :to="{ name: 'register' }">Need an account?</router-link></p>
       
     </b-form>

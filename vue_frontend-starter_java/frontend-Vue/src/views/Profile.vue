@@ -3,49 +3,49 @@
 <div class="profile">
   <div id="profile" class="text-center">
     <b-form class="form-profile" @submit.prevent="profile">
-      <h1 class="sign" align="center">Create Profile</h1>
+      <p><h1 class="sign" align="center">Create Profile</h1></p>
        
-      <b-form-input
+      <p><b-form-input
         type="text"
         id="firstName"
         placeholder="FirstName"
         v-model="userPreferences.firstName"
         required
         autofocus
-      />
-      <b-form-input
+      /></p>
+      <p><b-form-input
         type="text"
         id="lastName"
         placeholder="LastName"
         v-model="userPreferences.lastName"
         required
-      />
-      <b-form-input
+      /></p>
+      <p><b-form-input
         type="text"
         id="address1"
         placeholder="Address 1"
         v-model="userPreferences.addressOne"
         required
-      />
-      <b-form-input
+      /></p>
+      <p><b-form-input
         type="text"
         id="address2"
         placeholder="Address 2"
         v-model="userPreferences.addressTwo"
         
-      />
+      /></p>
       
-       <b-form-input
+       <p><b-form-input
         type="text"
         id="city"
         placeholder="City"
         v-model="userPreferences.city"
         required
-      />
+      /></p>
        
-       <b-form-select v-model="userPreferences.state" :options="states" name="state"></b-form-select>
+       <p><b-form-select v-model="userPreferences.state" :options="states" name="state"></b-form-select></p>
      
-       <b-form-input
+       <p><b-form-input
         type="text"
         id="zipcode"
         placeholder="Zipcode"
@@ -55,8 +55,8 @@
         
         v-model="userPreferences.zipCode"
         
-      />
-      <p align="center"><b-button variant="primary" type="submit">
+      /></p>
+      <p align="center"><b-button variant="outline-primary" type="submit">
         Submit
       </b-button></p>
     </b-form>
@@ -135,7 +135,6 @@ export default {
         { value: 'WI', text: 'Wisconsin'},
         { value: 'WY', text: 'Wyoming'}
       ]
-      
     }
   },
   methods: {
@@ -171,7 +170,7 @@ body {
     .profile {
         background-color: #FFFFFF;
         width: 400px;
-        height: 400px;
+        height: 530px;
         margin: 7em auto;
         border-radius: 1.5em;
         box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
