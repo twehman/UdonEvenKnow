@@ -1,6 +1,8 @@
 <template>
-<div>
+<b-container>
+    <p align="left">
   <b-form-checkbox-group
+    class="custom-control-inline"
     id="item.cuisine.cuisine_name"
     v-model="selectedCuisines"
     :options="testArray"
@@ -8,11 +10,8 @@
     value-field="cuisine.cuisine_id"
     text-field="cuisine.cuisine_name"
     ></b-form-checkbox-group>
-    </div>
-<!--<b-form-checkbox v-for=“item in cuisines.cuisines" :value="selectedCuisines"></b-form-checkbox>
-</b-form-checkbox-group> -->
-
-    
+    </p>
+  </b-container>
 
     <!-- TOM'S CODE THAT WORKS 
       <div v-for="item in cuisines.cuisines" id="selectedCuisines">
@@ -109,7 +108,13 @@ export default {
 #selectedCuisines {
     display: inline-flex;
     width: 20%;
-
 }
+
+.custom-control-inline {
+    display:inline-flex;
+    flex-wrap: wrap;
+    vertical-align: bottom;
+}
+
 </style>
 
