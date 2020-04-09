@@ -1,6 +1,5 @@
 <template>
 <b-container>
-    <p align="left">
   <b-form-checkbox-group
     class="custom-control-inline"
     id="item.cuisine.cuisine_name"
@@ -9,8 +8,10 @@
     name="cuisine.cuisine_name"
     value-field="cuisine.cuisine_id"
     text-field="cuisine.cuisine_name"
+    buttons
+    button-variant="outline-light"
+    size="sm"
     ></b-form-checkbox-group>
-    </p>
   </b-container>
 
     <!-- TOM'S CODE THAT WORKS 
@@ -114,6 +115,8 @@ export default {
     display:inline-flex;
     flex-wrap: wrap;
     vertical-align: bottom;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 </style>
