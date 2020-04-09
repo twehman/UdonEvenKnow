@@ -8,13 +8,34 @@
       <b-nav-item><router-link to="/profile">Profile</router-link></b-nav-item>
       <b-nav-item><router-link to="/restaurants">Restaurants</router-link></b-nav-item>
       <b-nav-item><router-link to="/details">Details</router-link></b-nav-item>
-      <b-nav-item><router-link to="/logout">Logout</router-link></b-nav-item>
+      <b-nav-item @click="logout">Logout</b-nav-item>
     </b-nav>
     </header>
     <router-view/>
   </div>
 </template>
-
+<script>
+import auth from '@/auth'
+export default {
+  methods: {
+    logout() {
+        fetch(`${process.env.VUE_APP_REMOTE_API}/logout`, {
+              method: 'POST',
+              headers: new Headers({
+                Authorization: 'Bearer ' + auth.getToken(),
+              }),
+              credentials: 'same-origin',
+            })
+        .then((response) => {
+            if(response.ok) {
+                auth.logout()
+                this.$router.push({ path: '/login' });
+            }
+        })
+  }
+  }
+}
+</script>
 <style>
 header {
   height: 50px;

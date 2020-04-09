@@ -65,6 +65,7 @@ public class AccountController {
     public String logout() throws UnauthorizedException {
         if (auth.getCurrentUser() != null) {
             auth.logOff();
+            System.out.println("user logged off successfully");
             return "{\"success\":true}";
         }
         else {
