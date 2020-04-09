@@ -56,7 +56,7 @@ export default {
       })
       .catch((err) => console.log(err)) 
     */
-    let params = new URLSearchParams({"lat" : this.zipcode.latitude , "lon" : this.zipcode.longitude});
+    let params = new URLSearchParams({"lat" : this.$props.zipcode.latitude , "lon" : this.$props.zipcode.longitude});
     fetch(`https://developers.zomato.com/api/v2.1/cuisines?${params.toString()}`, {
               method: 'GET',
               headers: {
