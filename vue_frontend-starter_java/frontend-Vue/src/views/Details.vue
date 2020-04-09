@@ -3,10 +3,10 @@
 <div class="main">
     <h1 class="sign" align="center">Welcome to Dinder</h1>
 <div class="pref">
-  <restaurant-search v-bind:zipcode="zipcode"></restaurant-search>
+  <restaurant-details v-bind:zipcode="zipcode"></restaurant-details>
 </div>
 <div class="pref">
-<restaurant-details></restaurant-details>
+<!--<restaurant-details></restaurant-details>-->
 </div>
 <div class="pref">
 </div>
@@ -15,14 +15,16 @@
 </template>
 
 <script>
-import RestaurantSearch from "@/components/Home/RestaurantSearch.vue";
+//import RestaurantSearch from "@/components/Home/RestaurantSearch.vue";
 import RestaurantDetails from "@/components/Home/RestaurantDetails.vue";
+
 import auth from '@/auth'
 export default {
   name: 'home',
   components: {
-    RestaurantSearch,
-    RestaurantDetails
+    //RestaurantSearch,
+    RestaurantDetails,
+    
 },
 
 data() {
