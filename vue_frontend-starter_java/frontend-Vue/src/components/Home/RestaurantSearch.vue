@@ -13,7 +13,7 @@
     -->
 
     <!-- TOM'S CODE THAT WORKS -->
-      <div v-for="item in getItems()" id="selectedCuisines">
+      <div v-for="item in cuisines.cuisines" id="selectedCuisines">
         <input type="checkbox" :id="item.cuisine.cuisine_name" :name="item.cuisine.cuisine_name" :value="item.cuisine.cuisine_id" v-model="selectedCuisines">
         <label :for="item.cuisine.cuisine_name"> {{item.cuisine.cuisine_name}}</label>
     </div>
@@ -35,8 +35,13 @@ export default {
       selectedCuisines: []
     };
   },
+  watch: {
+      zipcode: function() {
+          this.getItems()
+      }
+  },
   methods: {
-      getItems: function() {
+      getItems() {
           let returnArray = []
           let params = new URLSearchParams({"lat" : this.$props.zipcode.latitude , "lon" : this.$props.zipcode.longitude});
     fetch(`https://developers.zomato.com/api/v2.1/cuisines?${params.toString()}`, {
@@ -51,9 +56,9 @@ export default {
         })
         .then((data) => {
             returnArray = data
+            this.cuisines = data
         })
         .catch((err) => console.log(err))
-        return returnArray
       }
   },
   created() {
