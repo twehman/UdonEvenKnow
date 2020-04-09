@@ -104,7 +104,7 @@ export default {
     
   },
       created() {
-      /*fetch(`${process.env.VUE_APP_REMOTE_API}/restaurants`, {
+      fetch(`${process.env.VUE_APP_REMOTE_API}/restaurants`, {
               method: 'GET',
               headers: new Headers({
                 Authorization: 'Bearer ' + auth.getToken(),
@@ -131,7 +131,7 @@ export default {
         .then((data) => {
             this.restaurants = data
         })
-        .catch((err) => console.log(err))*/
+        .catch((err) => console.log(err))
 
 }
 };
