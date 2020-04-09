@@ -26,7 +26,7 @@ header {
 
 .nav li a, .nav li a:visited {
   text-decoration: none;
-  color: #151B54;
+  color: #00171F;
   text-transform: uppercase;
   font-size: 13px;
   font-weight: 700;

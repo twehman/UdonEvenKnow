@@ -111,7 +111,7 @@ export default {
     
     .sign {
         padding-top: 40px;
-        color: #737CA1;
+        color: #003459;
         font-family: sans-serif;
         font-weight: bold;
         font-size: 23px;

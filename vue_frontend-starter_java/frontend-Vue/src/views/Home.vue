@@ -70,14 +70,14 @@ data() {
 
     .sign {
         padding-top: 40px;
-        color: #737CA1;
+        color: #003459;
         font-family: sans-serif;
         font-weight: bold;
         font-size: 50px;
     }
 
     .pref {
-      background-color: #D3D3D3;
+      background-color: #007EA7;
       text-align: center;
       box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
       margin-top: 20px;
