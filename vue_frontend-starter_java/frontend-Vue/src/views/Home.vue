@@ -90,7 +90,7 @@ data() {
         color: #FFFFFF;
         font-family: sans-serif;
         font-weight: bold;
-        font-size: 25px;
+        font-size: 20px;
 }
 
 </style>
