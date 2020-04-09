@@ -5,7 +5,7 @@
   <restaurant-search></restaurant-search>
 </div>
 <div class="pref">
-Restaurant details, will make prettier
+<restaurant-details></restaurant-details>
 </div>
 <div class="pref">
 </div>
@@ -36,11 +36,6 @@ data() {
 </script>
 
 <style scoped>
-body {
-        background-color: #F3EBF6;
-        font-family: sans-serif;
-    }
-    
     .main {
         background-color: #FFFFFF;
         width: 800px;

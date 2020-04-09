@@ -1,37 +1,37 @@
 <template>
+<b-container>
 <div class="main">
   <div id="login" class="text-center">
-    <form class="form-signin" @submit.prevent="login">
+    <b-form class="form-signin" @submit.prevent="login">
       <h1 class="sign" align="center">Please Sign In</h1>
-      <div class="alert alert-danger" role="alert" v-if="invalidCredentials" align="center">
+      <b-alert show variant="danger" v-if="invalidCredentials" align="center">
         Invalid username and password!
-      </div>
-      <div class="alert alert-success" role="alert" v-if="this.$route.query.registration" align="center"> 
+      </b-alert>
+      <b-alert show variant="success" v-if="this.$route.query.registration" align="center"> 
         Thank you for registering, please sign in.
-      </div>
-      <input
+      </b-alert>
+      <b-form-input
         type="text"
         id="username"
-        class="un"
         placeholder="Username"
         v-model="user.username"
         required
         autofocus
       />
-      <input
+      <b-form-input
         type="password"
         id="password"
-        class="pass"
         placeholder="Password"
         v-model="user.password"
         required
       />
-      <p align="center"><button type="submit">Sign in</button></p>
-      <p class="register" align="center"><router-link :to="{ name: 'register' }">Need an account?</router-link></p>
+      <p align="center"><b-button variant="primary" type="submit">Sign in</b-button></p>
+      <p align="center"><router-link :to="{ name: 'register' }">Need an account?</router-link></p>
       
-    </form>
+    </b-form>
   </div>
   </div>
+</b-container>
 </template>
 
 <script>
@@ -101,11 +101,6 @@ export default {
 </script>
 
 <style>
-body {
-        background-color: #F3EBF6;
-        font-family: sans-serif;
-    }
-    
     .main {
         background-color: #FFFFFF;
         width: 400px;
@@ -123,60 +118,13 @@ body {
         font-size: 23px;
     }
     
-    .un {
-    width: 76%;
-    color: rgb(38, 50, 56);
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 1px;
-    background: rgba(136, 126, 126, 0.04);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    outline: none;
-    box-sizing: border-box;
-    border: 2px solid rgba(0, 0, 0, 0.02);
-    margin-bottom: 50px;
-    margin-left: 46px;
-    text-align: center;
-    margin-bottom: 27px;
-    font-family: sans-serif;
-    }
-    
     form.form1 {
         padding-top: 40px;
     }
-    
-    .pass {
-            width: 76%;
-    color: rgb(38, 50, 56);
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 1px;
-    background: rgba(136, 126, 126, 0.04);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    outline: none;
-    box-sizing: border-box;
-    border: 2px solid rgba(0, 0, 0, 0.02);
-    margin-bottom: 50px;
-    margin-left: 46px;
-    text-align: center;
-    margin-bottom: 27px;
-    font-family: sans-serif;
-    }
-    
    
     .un:focus, .pass:focus {
         border: 2px solid rgba(0, 0, 0, 0.18) !important;
         
-    }
-  
-    .register {
-        text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
-        color: #E1BEE7;
-        padding-top: 0px;
     }
     
     a {

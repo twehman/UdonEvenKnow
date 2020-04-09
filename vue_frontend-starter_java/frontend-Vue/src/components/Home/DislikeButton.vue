@@ -1,6 +1,6 @@
 <template>
   <div class="dislike-button">
-    <button class="btn btn-danger" v-on:click="DislikeRestaurant">Dislike</button>
+    <b-button variant="dark" v-on:click="DislikeRestaurant">Dislike</b-button>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="like-container">
-    <button id="like" class="btn btn-primary" v-on:click="LikeRestaurant">Like</button>
+    <b-button id="like" variant="danger" v-on:click="LikeRestaurant">Like</b-button>
   </div>
 </template>
 

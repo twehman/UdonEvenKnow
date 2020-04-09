@@ -1,10 +1,12 @@
 <template>
+<b-container>
 <div>
     <div v-for="item in cuisines.cuisines" id="selectedCuisines">
         <input type="checkbox" :id="item.cuisine.cuisine_name" :name="item.cuisine.cuisine_name" :value="item.cuisine.cuisine_id" v-model="selectedCuisines">
         <label :for="item.cuisine.cuisine_name"> {{item.cuisine.cuisine_name}}</label>
-    </div>
 </div>
+  </div>
+</b-container>
 </template>
 
 <script>
