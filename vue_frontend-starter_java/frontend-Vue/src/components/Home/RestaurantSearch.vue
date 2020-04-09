@@ -1,24 +1,27 @@
 <template>
-<b-container>
 <div>
-  <!-- <b-form-checkbox-group
+  <b-form-checkbox-group
     id="item.cuisine.cuisine_name"
     v-model="selectedCuisines"
-    :options="cuisines"
-    name="item.cuisine.cuisine_name">
-<b-form-checkbox v-for=“item in cuisines.cuisines" :value="selectedCuisines"></b-form-checkbox>
+    :options="testArray"
+    name="cuisine.cuisine_name"
+    value-field="cuisine.cuisine_id"
+    text-field="cuisine.cuisine_name"
+    ></b-form-checkbox-group>
+    </div>
+<!--<b-form-checkbox v-for=“item in cuisines.cuisines" :value="selectedCuisines"></b-form-checkbox>
 </b-form-checkbox-group> -->
 
     
 
-    <!-- TOM'S CODE THAT WORKS -->
+    <!-- TOM'S CODE THAT WORKS 
       <div v-for="item in cuisines.cuisines" id="selectedCuisines">
         <input type="checkbox" :id="item.cuisine.cuisine_name" :name="item.cuisine.cuisine_name" :value="item.cuisine.cuisine_id" v-model="selectedCuisines">
         <label :for="item.cuisine.cuisine_name"> {{item.cuisine.cuisine_name}}</label>
+        
     </div> 
-</div>
-  </div>
-</b-container>
+    -->
+
 </template>
 
 <script>
@@ -31,7 +34,8 @@ export default {
   data() {
     return {
       cuisines: [],
-      selectedCuisines: []
+      selectedCuisines: [],
+      testArray: [],
     };
   },
   watch: {
@@ -55,6 +59,9 @@ export default {
         })
         .then((data) => {
             returnArray = data
+            data.cuisines.forEach((item) => {
+              this.testArray.push(item)
+            })
             this.cuisines = data
         })
         .catch((err) => console.log(err))
