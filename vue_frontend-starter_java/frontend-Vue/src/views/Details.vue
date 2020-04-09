@@ -24,8 +24,9 @@
 
     </div>
     <div id="buttons">
-       <b-button v-on:Dislike="dislikeRestaurant" v-if:="details.restaurants"/>
-       <b-button v-on:Like="likeRestaurant" v-if:="details.restaurants"/>
+        <b-button href="#" variant="success">Like</b-button>
+        <br/>
+        <b-button href="#" variant="danger">Dislike</b-button>
    </div>
   </div>
   
