@@ -1,6 +1,11 @@
 <template>
   <div class="restaurant-details">
-    <div class="details" v-for="details in restaurants">
+    <div class="details">
+      <p v-for="details in testArray">{{details.restaurant.cuisines}}</p>
+    </div>
+  </div>
+  </template>
+  <!--
       <div class="featuredimage">
         <img :src="getImage">
       <div class="text-infor">
@@ -33,7 +38,7 @@
   </div>
   </div>
 </template>
-
+-->
 <!-- Let's implement B-cards for the restaurant details? I will change once everything works -SC
 <div>
   <b-card
@@ -78,7 +83,7 @@ export default {
         }
       }
       return dollarsigns;
-    },
+    }, /*
        getImage() {
       let thisRestaurant = this.details.restaurants[this.restaurantNumber].restaurant;
       if (
@@ -87,14 +92,15 @@ export default {
         return thisRestaurant.featured_image;
       } 
       return "https://via.placeholder.com/1200x464";
-    }
+    } */
   },
   
 
   data() {
         return {
             restaurantNumber: 0,
-            restaurants: []
+            restaurants: [],
+            testArray: []
         }
     },
  
@@ -129,10 +135,11 @@ export default {
             return response.json()
         })
         .then((data) => {
-            data.restaurants.forEach =((item)=> {
-              this.restaurants.push(item);
+            this.restaurants = data
+            data.restaurants.forEach((item) => {
+              this.testArray.push(item)
             })
-        })
+            })
         .catch((err) => console.log(err))
 
 }
