@@ -1,6 +1,6 @@
 <template>
 <b-container>
-<div class="main">
+<div class="home">
   <div id="register" class="text-center">
     <b-form class="form-register" @submit.prevent="register">
       <h1 class="sign" align="center">Create Account</h1>
@@ -80,7 +80,7 @@ export default {
 </script>
 
 <style>
-    .main {
+    .home {
         background-color: #FFFFFF;
         width: 400px;
         height: 400px;
@@ -91,7 +91,7 @@ export default {
     
     .sign {
         padding-top: 40px;
-        color: #8C55AA;
+        color:#737CA1;
         font-family: sans-serif;
         font-weight: bold;
         font-size: 23px;

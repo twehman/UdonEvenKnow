@@ -1,4 +1,5 @@
 <template>
+<b-container>
 <div class="main">
     <h1 class="sign" align="center">Welcome to Restaurant Tinder</h1>
 <div class="pref">
@@ -10,7 +11,7 @@
 <div class="pref">
 </div>
   </div>
-  
+  </b-container>
 </template>
 
 <script>
@@ -47,7 +48,7 @@ data() {
 
     .sign {
         padding-top: 40px;
-        color: #8C55AA;
+        color: #737CA1;
         font-family: sans-serif;
         font-weight: bold;
         font-size: 50px;

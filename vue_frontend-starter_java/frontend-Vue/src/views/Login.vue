@@ -1,7 +1,6 @@
 <template>
 <b-container>
-<div class="main">
-  <div id="login" class="text-center">
+<div class="home">
     <b-form class="form-signin" @submit.prevent="login">
       <h1 class="sign" align="center">Please Sign In</h1>
       <b-alert show variant="danger" v-if="invalidCredentials" align="center">
@@ -18,6 +17,7 @@
         required
         autofocus
       />
+
       <b-form-input
         type="password"
         id="password"
@@ -29,7 +29,6 @@
       <p align="center"><router-link :to="{ name: 'register' }">Need an account?</router-link></p>
       
     </b-form>
-  </div>
   </div>
 </b-container>
 </template>
@@ -101,7 +100,7 @@ export default {
 </script>
 
 <style>
-    .main {
+    .home {
         background-color: #FFFFFF;
         width: 400px;
         height: 400px;
@@ -112,25 +111,15 @@ export default {
     
     .sign {
         padding-top: 40px;
-        color: #8C55AA;
+        color: #737CA1;
         font-family: sans-serif;
         font-weight: bold;
         font-size: 23px;
-    }
-    
-    form.form1 {
-        padding-top: 40px;
     }
    
     .un:focus, .pass:focus {
         border: 2px solid rgba(0, 0, 0, 0.18) !important;
         
-    }
-    
-    a {
-        text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
-        color: #E1BEE7;
-        text-decoration: none
     }
     
     @media (max-width: 600px) {

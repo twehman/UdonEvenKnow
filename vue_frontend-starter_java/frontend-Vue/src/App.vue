@@ -1,13 +1,13 @@
 <template>
   <div id="app">
     <header>
-    <ul class="nav">
-      <li><router-link to="/">Home</router-link></li>
-      <li><router-link to="/login">Login</router-link></li>
-      <li><router-link to="/register">Register</router-link></li>
-      <li><router-link to="/profile">Profile</router-link></li>
-      <li><router-link to="/restaurants">Restaurants</router-link></li>
-    </ul>
+    <b-nav tabs align="center">
+      <b-nav-item><router-link to="/">Home</router-link></b-nav-item>
+      <b-nav-item><router-link to="/login">Login</router-link></b-nav-item>
+      <b-nav-item><router-link to="/register">Register</router-link></b-nav-item>
+      <b-nav-item><router-link to="/profile">Profile</router-link></b-nav-item>
+      <b-nav-item><router-link to="/restaurants">Restaurants</router-link></b-nav-item>
+    </b-nav>
     </header>
     <router-view/>
   </div>
@@ -22,19 +22,10 @@ header {
   background-color: rgb(247, 247, 247);
 
 }
-.nav {
-  padding:14px;
-  margin:0;
-  flex:1;
-  list-style-type: none;
-}
-.nav li {
-  display: inline;
-  padding-right: 20px;
-}
+
 .nav li a, .nav li a:visited {
   text-decoration: none;
-  color: rgb(56, 56, 146);
+  color: #151B54;
   text-transform: uppercase;
   font-size: 13px;
   font-weight: 700;

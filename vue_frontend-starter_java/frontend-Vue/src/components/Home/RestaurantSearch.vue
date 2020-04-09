@@ -1,9 +1,22 @@
 <template>
 <b-container>
 <div>
-    <div v-for="item in cuisines.cuisines" id="selectedCuisines">
+  <!--B-FORM CODE THAT NEEDS TO IMPLEMENT THE CUISINE TYPES-
+  <div v-for="item in cuisines.cuisines" id="selectedCuisines">
+    <b-form-checkbox-group
+    id="item.cuisine.cuisine_name"
+    v-model="selectedCuisines"
+    :options="cuisines"
+    name="item.cuisine.cuisine_name"
+    />
+    </div>
+    -->
+
+    <!-- TOM'S CODE THAT WORKS -->
+      <div v-for="item in cuisines.cuisines" id="selectedCuisines">
         <input type="checkbox" :id="item.cuisine.cuisine_name" :name="item.cuisine.cuisine_name" :value="item.cuisine.cuisine_id" v-model="selectedCuisines">
         <label :for="item.cuisine.cuisine_name"> {{item.cuisine.cuisine_name}}</label>
+    </div>
 </div>
   </div>
 </b-container>
