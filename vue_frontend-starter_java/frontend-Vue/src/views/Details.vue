@@ -21,10 +21,11 @@
         <span class="cuisine-object">Cuisine:</span>
         {{details.restaurant.cuisines}}
       </h3>
+
     </div>
     <div id="buttons">
-    <dislike-button v-on:Dislike="dislikeRestaurant" v-if:="details.restaurants"/>
-    <like-button v-on:Like="likeRestaurant" v-if:="details.restaurants"/>
+       <b-button v-on:Dislike="dislikeRestaurant" v-if:="details.restaurants"/>
+       <b-button v-on:Like="likeRestaurant" v-if:="details.restaurants"/>
    </div>
   </div>
   
@@ -99,7 +100,7 @@ export default {
         LikeButton
     },
     computed: {
-        dollarprice: function() {
+       /* dollarprice: function() {
             let dollarsigns = "";
             if (this.details && this.details.restaurants) {
                 for (
