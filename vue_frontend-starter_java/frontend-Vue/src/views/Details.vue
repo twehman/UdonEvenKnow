@@ -1,6 +1,6 @@
 <template>
   <div class="restaurant-details">
-    <div class="details" v-if="details.restaurants" :key="restaurantNumber">
+    <div class="details" v-for="details in restaurants">
       <div class="featuredimage">
         <img :src="getImage">
       <div class="text-infor">
@@ -129,7 +129,9 @@ export default {
             return response.json()
         })
         .then((data) => {
-            this.restaurants = data
+            data.restaurants.forEach =((item)=> {
+              this.restaurants.push(item);
+            })
         })
         .catch((err) => console.log(err))
 
