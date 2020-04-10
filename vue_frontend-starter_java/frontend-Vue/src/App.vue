@@ -20,7 +20,7 @@ import auth from '@/auth'
 export default {
   data() {
     return {
-      isAuthenticated: auth.getUser() != null
+      isAuthenticated: this.getAuthStatus()
     };
   },
   methods: {
@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     getAuthStatus: function() {
-      auth.getUser() != null
+      return auth.getUser() != null
     }
   }
   }
