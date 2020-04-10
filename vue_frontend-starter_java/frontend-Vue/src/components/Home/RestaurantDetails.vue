@@ -144,6 +144,15 @@ export default {
         }
     },
  
+
+ /* data() {
+    return {
+      restaurantNumber: 0,
+      emptyArray: "Search again!",
+      username: auth.getUser().sub,
+      restaurantimage: 
+    };
+    */
   
   
   methods: {
