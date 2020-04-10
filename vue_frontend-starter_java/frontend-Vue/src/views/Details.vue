@@ -24,9 +24,9 @@
 
     </div>
     <div id="buttons">
-        <b-button href="#" variant="success">Like</b-button>
+        <b-button href="#" variant="success">Like</b-button>  <!--Buttons not connected to components yet, stay tuned --RR-->
         <br/>
-        <b-button href="#" variant="danger">Dislike</b-button>
+        <b-button href="#" variant="danger">Dislike</b-button><!--Buttons not connected to components yet, stay tuned --RR-->
    </div>
   </div>
   
