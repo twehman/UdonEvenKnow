@@ -1,6 +1,6 @@
 <template>
   <div class="restaurant-details">
-    <div class="details" v-for="details in testArray"> <!-- just need to add v:bind here otherwise still able to loop -RR -->
+    <div class="details" v-for="details in currentRestaurant"> <!-- just need to add v:bind here otherwise still able to loop -RR -->
      <!--<div class="featuredimage">
         <img :src= 'details.restuarant.featured_image'>
      </div>-->
@@ -140,7 +140,8 @@ export default {
         return {
             restaurantNumber: 0,
             restaurants: [],
-            testArray: []
+            testArray: [],
+            currentRestaurant: []
         }
     },
  
@@ -222,6 +223,8 @@ export default {
             data.restaurants.forEach((item) => {
               this.testArray.push(item)
             })
+            console.log('hi')
+            this.currentRestaurant.push(this.testArray.shift())
             })
         .catch((err) => console.log(err))
 
