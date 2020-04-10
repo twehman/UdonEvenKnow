@@ -4,11 +4,11 @@
     <h1 class="sign" align="center">Welcome to Restaurant Tinder</h1>
 <div class="pref">
     <p><h2 class="h2" align="left"> Select your preferred cuisine types:</h2></p>
-  <restaurant-search v-bind:zipcode="zipcode"></restaurant-search>
+  <restaurant-search v-on:user-choices="passUserChoices" v-bind:zipcode="zipcode"></restaurant-search>
 </div>
 <div class="pref">
   <p><h2 class="h2" align="left"> Here are some recommended restaurants:</h2></p>
-<restaurant-details></restaurant-details>
+<restaurant-details v-bind:choices="cuisineIds"></restaurant-details>
 </div>
 <div class="pref">
 </div>
@@ -35,12 +35,16 @@ data() {
         latitude: '',
         longitude: '',
       },
-    details: []
-
+    details: [],
+    cuisineIds: []
   };
 },
     methods: {
-      //performSearch?
+      passUserChoices(event) {
+        event.forEach((item)=> {
+          this.cuisineIds.push(item)
+        })
+      }
         }, 
   created() {
     fetch(`${process.env.VUE_APP_REMOTE_API}/restaurants`, {
