@@ -2,7 +2,7 @@
 <b-container>
 <div class="home">
     <b-form class="form-signin" @submit.prevent="login">
-      <p><h1 class="sign" align="center">Please Sign In</h1></p>
+      <h1 class="sign" align="center">Please Sign In</h1>
       <b-alert show variant="danger" v-if="invalidCredentials" align="center">
         Invalid username and password!
       </b-alert>
@@ -35,6 +35,7 @@
 
 <script>
 import auth from '../auth';
+import { bus } from '../main';
 
 export default {
   name: 'login',
@@ -61,7 +62,7 @@ export default {
       })
         .then((response) => {
           if (response.ok) {
-            this.$emit("log-in")
+            bus.$emit("log-in", "success")
             return response.text();
           } else {
             this.invalidCredentials = true;

@@ -7,7 +7,7 @@
       <b-nav-item><router-link to="/profile">Profile</router-link></b-nav-item>
       <b-nav-item><router-link to="/restaurants">Restaurants</router-link></b-nav-item>
       <b-nav-item><router-link to="/details">Details</router-link></b-nav-item>
-      <b-nav-item v-on:log-in="isAuth" v-if="!isAuthenticated"><router-link to="/login">Login</router-link></b-nav-item>
+      <b-nav-item v-if="!isAuthenticated"><router-link to="/login">Login</router-link></b-nav-item>
       <b-nav-item v-if="isAuthenticated" @click="logout">Logout</b-nav-item>
     </b-nav>
     </header>
@@ -16,7 +16,8 @@
 
 </template>
 <script>
-import auth from '@/auth'
+import auth from '@/auth';
+import { bus } from '@/main';
 export default {
   data() {
     return {
@@ -39,12 +40,13 @@ export default {
                 this.$router.push({ path: '/login' });
             }
         })
-  },
-  isAuth() {
-    console.log('hi')
-  },
-
   }
+  },
+  created() {
+    bus.$on('log-in', (data) => {
+      this.isAuthenticated = true
+    })
+  },
 };
 </script>
 <style>
