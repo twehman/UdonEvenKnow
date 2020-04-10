@@ -153,7 +153,7 @@ export default {
       restaurantimage: 
     };
   watch: {
-    summaries: function {
+    details: function {
 
     }
   }
@@ -164,7 +164,8 @@ export default {
   
   
   methods: {
-    /* nextRestaurant() {
+    
+  /* nextRestaurant() {
       if(this.details.restauranuts.length < 1 ) {
           return this.emptyArray;
       }
@@ -174,9 +175,9 @@ export default {
         this.restaurantNumber = 0;
       }
     },
-  
 
-    
+
+    */
   },
       created() {
       fetch(`${process.env.VUE_APP_REMOTE_API}/restaurants`, {
