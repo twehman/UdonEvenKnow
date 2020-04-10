@@ -8,6 +8,7 @@
       <h3 class="name">
         <span class="name-object">Name:</span>
         {{details.restaurant.name}}
+        <img :src="details.restaurant.featured_image" />
       </h3>
       <h3 class="location">
         <span class="location-object">Location:</span>
