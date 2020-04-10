@@ -3,20 +3,26 @@
     <header>
     <b-nav tabs align="center">
       <b-nav-item><router-link to="/">Home</router-link></b-nav-item>
-      <b-nav-item><router-link to="/login">Login</router-link></b-nav-item>
       <b-nav-item><router-link to="/register">Register</router-link></b-nav-item>
       <b-nav-item><router-link to="/profile">Profile</router-link></b-nav-item>
       <b-nav-item><router-link to="/restaurants">Restaurants</router-link></b-nav-item>
       <b-nav-item><router-link to="/details">Details</router-link></b-nav-item>
-      <b-nav-item @click="logout">Logout</b-nav-item>
+      <b-nav-item v-if="isAuthenticated"><router-link to="/login">Login</router-link></b-nav-item>
+      <b-nav-item v-if="isAuthenticated !== false" @click="logout">Logout</b-nav-item>
     </b-nav>
     </header>
     <router-view/>
   </div>
+
 </template>
 <script>
 import auth from '@/auth'
 export default {
+  data() {
+    return {
+      isAuthenticated: auth.getUser() !== null
+    };
+  },
   methods: {
     logout() {
         fetch(`${process.env.VUE_APP_REMOTE_API}/logout`, {
@@ -32,9 +38,14 @@ export default {
                 this.$router.push({ path: '/login' });
             }
         })
+  },
+  computed: {
+    getUser() {
+      return auth.getUser();
+    }
   }
   }
-}
+};
 </script>
 <style>
 header {
