@@ -4,7 +4,7 @@
     class="custom-control-inline"
     id="item.cuisine.cuisine_name"
     v-model="selectedCuisines"
-    :options="testArray"
+    :options="cuisines"
     name="cuisine.cuisine_name"
     value-field="cuisine.cuisine_id"
     text-field="cuisine.cuisine_name"
@@ -12,7 +12,11 @@
     button-variant="outline-light"
     size="sm"
     ></b-form-checkbox-group>
+    <b-form-group>
+    <b-button v-on:click="$emit('user-choices', selectedCuisines)">Enough clicking, show me places to eat!</b-button>
+    </b-form-group>
   </b-container>
+  
 
     <!-- TOM'S CODE THAT WORKS 
       <div v-for="item in cuisines.cuisines" id="selectedCuisines">
@@ -35,7 +39,6 @@ export default {
     return {
       cuisines: [],
       selectedCuisines: [],
-      testArray: [],
     };
   },
   watch: {
@@ -45,26 +48,28 @@ export default {
   },
   methods: {
       getItems() {
-          let returnArray = []
           let params = new URLSearchParams({"lat" : this.$props.zipcode.latitude , "lon" : this.$props.zipcode.longitude});
-    fetch(`https://developers.zomato.com/api/v2.1/cuisines?${params.toString()}`, {
-              method: 'GET',
-              headers: {
-                Accept: 'application/json',
-                'user-key': 'c1bbb3341d92fcff2ad26d1965e26008',
-              }
-        })
-        .then((response) =>{
+          fetch(`https://developers.zomato.com/api/v2.1/cuisines?${params.toString()}`, {
+            method: 'GET',
+            headers: {
+              Accept: 'application/json',
+              'user-key': 'c1bbb3341d92fcff2ad26d1965e26008',
+            }
+          })
+          .then((response) =>{
             return response.json()
-        })
-        .then((data) => {
-            returnArray = data
+          })
+          .then((data) => {
             data.cuisines.forEach((item) => {
-              this.testArray.push(item)
+              this.cuisines.push(item)
             })
-            this.cuisines = data
-        })
-        .catch((err) => console.log(err))
+          })
+          .catch((err) => console.log(err))
+      }, 
+      sendCuisines() {
+        console.log('sending')
+        console.log(this.selectedCuisines)
+        this.$emit('user-choices', this.selectedCuisines)
       }
   },
   created() {

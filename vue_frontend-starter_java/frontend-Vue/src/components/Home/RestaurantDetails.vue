@@ -1,6 +1,45 @@
 <template>
   <div class="restaurant-details">
-    <div class="details" v-for="details in restaurants">
+    <div class="details" v-for="details in testArray"> <!-- just need to add v:bind here otherwise still able to loop -RR -->
+     <!--<div class="featuredimage">
+        <img :src= 'details.restuarant.featured_image'>
+     </div>-->
+     
+      <h3 class="name">
+        <span class="name-object">Name:</span>
+        {{details.restaurant.name}}
+      </h3>
+      <h3 class="location">
+        <span class="location-object">Location:</span>
+        {{details.restaurant.location.address}}
+      </h3>
+       <h3 class="hours">
+        <span class="hours-object">Hours:</span>
+        {{details.restaurant.timings}}
+      </h3>
+      <h3 class="rating">
+        <span class="rating-object">Rating:</span>
+        {{details.restaurant.user_rating.aggregate_rating}} out of 5
+      </h3>
+      <h3 class="cuisine">
+        <span class="cuisine-object">Cuisine:</span>
+        {{details.restaurant.cuisines}}
+      </h3>
+      <h3 class="price">
+        <span class="price-object">Price-Range:</span>
+        {{price}}  
+      </h3>
+
+    </div>
+    <div id="buttons">
+        <b-button href="#" variant="success">Like</b-button>  <!--Buttons not connected to components yet, stay tuned -RR -->
+        <br/>
+        <b-button href="#" variant="danger">Dislike</b-button><!--Buttons not connected to components yet, stay tuned -RR -->
+   </div>
+  </div>
+  
+  
+  <!--
       <div class="featuredimage">
         <img :src="getImage">
       <div class="text-infor">
@@ -33,7 +72,7 @@
   </div>
   </div>
 </template>
-
+-->
 <!-- Let's implement B-cards for the restaurant details? I will change once everything works -SC
 <div>
   <b-card
@@ -53,6 +92,7 @@
   </b-card>
 </div>
 -->
+</template>
 
 <script>
 import auth from '@/auth';
@@ -69,39 +109,75 @@ export default {
         LikeButton
     },
     computed: {
-        dollarprice: function() {
+       dollarPrice: function() {  // trying to convert pricerange into $-$$ -RR 
             let dollarsigns = "";
-            if (this.details && this.details.restaurants) {
+            
                 for (
-                    let i = 0; i < this.details.restaurants[this.restaurantNumber].restaurant.price_range; i++) {
+                    let i = 0; i < this.details.restaurant.price_range; i++) {
           dollarsigns += "$";
         }
-      }
+      
       return dollarsigns;
-    },
-       getImage() {
-      let thisRestaurant = this.details.restaurants[this.restaurantNumber].restaurant;
+    }, 
+      price: function(){    // trying to convert price_range into $ --- ex: 2 == $$, 3==$$$   --RR
+        let dollar = '$';
+        let a = parseInt("details.restaurant.price_range"); // supposed to convert string price_range into number --RR
+        return dollar.repeat(a);  // for some reason this only works when you hardcode ie replace a with 2 --RR
+      },
+       getImage() { // ugh why wont this shit work!!!!!!!!
+      let thisRestaurant = this.details.restaurant;
       if (
         thisRestaurant.featured_image
       ) {
         return thisRestaurant.featured_image;
-      } 
-      return "https://via.placeholder.com/1200x464";
-    }
+      }     
+      return thisRestaurant.featured_image;
+    }  
   },
   
 
   data() {
         return {
             restaurantNumber: 0,
-            restaurants: []
+            restaurants: [],
+            testArray: []
         }
     },
  
+
+ /* data() {
+    return {
+      restaurantNumber: 0,
+      emptyArray: "Search again!",
+      username: auth.getUser().sub,
+      restaurantimage: 
+    };
+  watch: {
+    details: function {
+
+    }
+  }
+
+
+
+    */
   
   
   methods: {
     
+  /* nextRestaurant() {
+      if(this.details.restauranuts.length < 1 ) {
+          return this.emptyArray;
+      }
+      if(this.restaurantNumber < this.details.restaurants.length - 1) {
+        this.restauantNumber = this.restaurantNumber + 1;
+      } else {
+        this.restaurantNumber = 0;
+      }
+    },
+
+
+    */
   },
       created() {
       fetch(`${process.env.VUE_APP_REMOTE_API}/restaurants`, {
@@ -129,10 +205,11 @@ export default {
             return response.json()
         })
         .then((data) => {
-            data.restaurants.forEach =((item)=> {
-              this.restaurants.push(item);
+            this.restaurants = data
+            data.restaurants.forEach((item) => {
+              this.testArray.push(item)
             })
-        })
+            })
         .catch((err) => console.log(err))
 
 }
