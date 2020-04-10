@@ -13,7 +13,7 @@
     size="sm"
     ></b-form-checkbox-group>
     <b-form-group>
-    <b-button @click="sendCuisines">Enough clicking, show me places to eat!</b-button>
+    <b-button v-on:click="$emit('user-choices', selectedCuisines)">Enough clicking, show me places to eat!</b-button>
     </b-form-group>
   </b-container>
   
@@ -67,6 +67,8 @@ export default {
           .catch((err) => console.log(err))
       }, 
       sendCuisines() {
+        console.log('sending')
+        console.log(this.selectedCuisines)
         this.$emit('user-choices', this.selectedCuisines)
       }
   },
