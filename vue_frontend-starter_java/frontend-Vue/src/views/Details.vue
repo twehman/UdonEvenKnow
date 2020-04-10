@@ -1,178 +1,108 @@
 <template>
-  <div class="restaurant-details">
-    <div class="details" v-for="details in testArray">
-      <h3 class="name">
-        <span class="name-object">Name:</span>
-        {{details.restaurant.name}}
-      </h3>
-      <h3 class="location">
-        <span class="location-object">Location:</span>
-        {{details.restaurant.location.address}}
-      </h3>
-       <h3 class="hours">
-        <span class="hours-object">Hours:</span>
-        {{details.restaurant.timings}}
-      </h3>
-      <h3 class="rating">
-        <span class="rating-object">Rating:</span>
-        {{details.restaurant.user_rating.aggregate_rating}} out of 5
-      </h3>
-      <h3 class="cuisine">
-        <span class="cuisine-object">Cuisine:</span>
-        {{details.restaurant.cuisines}}
-      </h3>
-
-    </div>
-    <div id="buttons">
-        <b-button href="#" variant="success">Like</b-button>  <!--Buttons not connected to components yet, stay tuned --RR-->
-        <br/>
-        <b-button href="#" variant="danger">Dislike</b-button><!--Buttons not connected to components yet, stay tuned --RR-->
-   </div>
-  </div>
-  
-  
-  <!--
-      <div class="featuredimage">
-        <img :src="getImage">
-      <div class="text-infor">
-        <div class="text-container" id="text-info">
-          <h3 class="name">{{details.restaurants[restaurantNumber].restaurant.name}}</h3>
-          <h3 class="rating">
-            <span class="rating-object">Rating:</span>
-            {{details.restaurants[restaurantNumber].restaurant.user_rating.aggregate_rating}} out of 5
-          </h3>
-          <h3 class="location">
-            <span class="location-object">Location:</span>
-            {{details.location[restaurantNumber].restaurant.location}} 
-          </h3>
-          <h3>
-            <span class="cuisine-object">Cuisine:</span>
-            {{details.cuisine[restaurantNumber].restaurant.cuisine}}  
-          </h3>
-          <h3>
-            <span class="price-range">Price:</span>
-            <span class="dollar-sign">{{dollarprice}}</span>
-          </h3>
+  <section class="container">
+    <div class="fixed fixed--center" style="z-index: 3">
+      <Vue2InteractDraggable
+        v-if="isVisible"
+        :interact-out-of-sight-x-coordinate="500"
+        :interact-max-rotation="15"
+        :interact-x-threshold="200"
+        :interact-y-threshold="200"
+        @draggedRight="right"
+        class="rounded-borders card card--one">
+        <div class="flex flex--center" style="height: 100%">
+          <h1>{{current.text}}</h1>
         </div>
+      </Vue2InteractDraggable>
+    </div>
+    <div
+      class="rounded-borders card card--two fixed fixed--center"
+      style="z-index: 2">
+      <div class="flex flex--center" style="height: 100%">
+        <h1>test</h1>
       </div>
     </div>
-   <div id="buttons">
-       <dislike-button v-on:Dislike="dislikeRestaurant" v-if:="details.restaurants"/>
-       <like-button v-on:Like="likeRestaurant" v-if:="details.restaurants"/>
-   </div>
-   
-  </div>
-  </div>
+    <div
+      class="rounded-borders card card--three fixed fixed--center"
+      style="z-index: 1">
+      <div class="flex flex--center" style="height: 100%">
+        <h1>test</h1>
+      </div>
+    </div>
+  </section>
 </template>
--->
-<!-- Let's implement B-cards for the restaurant details? I will change once everything works -SC
-<div>
-  <b-card
-    title="Card Title"
-    img-src="https://picsum.photos/600/300/?image=25"
-    img-alt="Image"
-    img-top
-    tag="article"
-    style="max-width: 20rem;"
-    class="mb-2"
-  >
-    <b-card-text>
-      Some quick example text to build on the card title and make up the bulk of the card's content.
-    </b-card-text>
-
-    <b-button href="#" variant="primary">Go somewhere</b-button>
-  </b-card>
-</div>
--->
-</template>
-
 <script>
-import auth from '@/auth';
-import DislikeButton from "@/components/Home/DislikeButton.vue";
-import LikeButton from "@/components/Home/LikeButton.vue";
-
+import { Vue2InteractDraggable } from 'vue2-interact'
 export default {
-    name: "RestaurantDetails",
-    props: {
-        details: Object
-    },
-    components: {
-        DislikeButton,
-        LikeButton
-    },
-    computed: {
-       /* dollarprice: function() {
-            let dollarsigns = "";
-            if (this.details && this.details.restaurants) {
-                for (
-                    let i = 0; i < this.details.restaurants.price_range; i++) {
-          dollarsigns += "$";
-        }
-      }
-      return dollarsigns;
-    }, /*
-       getImage() {
-      let thisRestaurant = this.details.restaurants[this.restaurantNumber].restaurant;
-      if (
-        thisRestaurant.featured_image
-      ) {
-        return thisRestaurant.featured_image;
-      } 
-      return "https://via.placeholder.com/1200x464";
-    } */
-  },
-  
-
+  name: 'SwipeableCards',
+  components: { Vue2InteractDraggable },
   data() {
-        return {
-            restaurantNumber: 0,
-            restaurants: [],
-            testArray: []
-        }
-    },
- 
-  
-  
-  methods: {
-    
+    return {
+      isVisible: true,
+      index: 0,
+      cards: [
+        { text: 'one' },
+        { text: 'two' },
+        { text: 'three' },
+      ]
+    }
   },
-      created() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/restaurants`, {
-              method: 'GET',
-              headers: new Headers({
-                Authorization: 'Bearer ' + auth.getToken(),
-              }),
-              credentials: 'same-origin',
-            })
-            .then((response) => {
-          return response.json()
-        })
-      .then((userZipcode)=> {
-          this.zipcode = userZipcode
-      })
-      .catch((err) => console.log(err))
-    fetch(`https://developers.zomato.com/api/v2.1/search?lat=41.480881&lon=-81.80036`, {
-              method: 'GET',
-              headers: {
-                Accept: 'application/json',
-                'user-key': '4c1372de3bf074d7157807284b3d747f',
-              }
-        })
-        .then((response) =>{
-            return response.json()
-        })
-        .then((data) => {
-            this.restaurants = data
-            data.restaurants.forEach((item) => {
-              this.testArray.push(item)
-            })
-            })
-        .catch((err) => console.log(err))
-
+  computed: {
+    current() {
+      return this.cards[this.index]
+    }
+  },
+  methods: {
+    right() {
+      setTimeout(() => this.isVisible = false, 200)
+      setTimeout(() => {
+        this.index++
+        this.isVisible = true
+      }, 300)
+    }
+  }
 }
-};
 </script>
-
-<style>
-
+<style lang="scss" scoped>
+.container {
+  background: #eceff1;
+  width: 100%;
+  height: 100vh;
+}
+.flex {
+  display: flex;
+  &--center {
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+  }
+}
+.fixed {
+  position: fixed;
+  &--center {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+.rounded-borders {
+  border-radius: 12px;
+}
+.card {
+  width: 300px;
+  height: 400px;
+  color: white;
+  &--one {
+    background-color: pink;
+  }
+  &--two {
+    background-color: red;
+    width: 280px;
+    top: 51%;
+  }
+  &--three {
+    background-color: orange;
+    width: 260px;
+    top: 51.8%;
+  }
+}
 </style>
