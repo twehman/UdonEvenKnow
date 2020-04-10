@@ -61,6 +61,7 @@ export default {
       })
         .then((response) => {
           if (response.ok) {
+            this.$emit("log-in")
             return response.text();
           } else {
             this.invalidCredentials = true;

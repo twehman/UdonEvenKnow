@@ -7,7 +7,7 @@
       <b-nav-item><router-link to="/profile">Profile</router-link></b-nav-item>
       <b-nav-item><router-link to="/restaurants">Restaurants</router-link></b-nav-item>
       <b-nav-item><router-link to="/details">Details</router-link></b-nav-item>
-      <b-nav-item v-if="!isAuthenticated"><router-link to="/login">Login</router-link></b-nav-item>
+      <b-nav-item v-on:log-in="isAuth" v-if="!isAuthenticated"><router-link to="/login">Login</router-link></b-nav-item>
       <b-nav-item v-if="isAuthenticated" @click="logout">Logout</b-nav-item>
     </b-nav>
     </header>
@@ -20,7 +20,7 @@ import auth from '@/auth'
 export default {
   data() {
     return {
-      isAuthenticated: this.getAuthStatus()
+      isAuthenticated: auth.getUser() != null,
     };
   },
   methods: {
@@ -40,11 +40,10 @@ export default {
             }
         })
   },
-  computed: {
-    getAuthStatus: function() {
-      return auth.getUser() != null
-    }
-  }
+  isAuth() {
+    console.log('hi')
+  },
+
   }
 };
 </script>
