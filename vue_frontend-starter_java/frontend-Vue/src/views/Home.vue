@@ -41,6 +41,7 @@ data() {
 },
     methods: {
       passUserChoices(event) {
+        this.cuisineIds = []
         event.forEach((item)=> {
           this.cuisineIds.push(item)
         })
