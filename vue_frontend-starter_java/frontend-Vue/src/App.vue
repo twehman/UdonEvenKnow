@@ -8,7 +8,7 @@
       <b-nav-item><router-link to="/restaurants">Restaurants</router-link></b-nav-item>
       <b-nav-item><router-link to="/details">Details</router-link></b-nav-item>
       <b-nav-item v-if="isAuthenticated"><router-link to="/login">Login</router-link></b-nav-item>
-      <b-nav-item v-if="isAuthenticated !== false" @click="logout">Logout</b-nav-item>
+      <b-nav-item v-if="isAuthenticated === false" @click="logout">Logout</b-nav-item>
     </b-nav>
     </header>
     <router-view/>
