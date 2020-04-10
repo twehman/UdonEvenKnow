@@ -175,6 +175,19 @@ export default {
         this.restaurantNumber = 0;
       }
     },
+    dislikeRestaurant() {
+      this.details.restaurants.splice(this.restaurantNumber, 1);
+ 
+    likeRestaurant() {
+      try {
+        const payload = {
+          "RestaurantId": this.details.restaurants[this.restaurantNumber].restaurant.id,
+           "RestaurantName": this.details.restaurants[this.restaurantNumber].restaurant.name,
+           "RestaurantImage": this.details.restaurants[this.restaurantNumber].restaurant.featured_image,
+           "RestaurantPriceRange": this.details.restaurants[this.restaurantNumber].restaurant.price_range
+        };
+
+
 
 
     */
