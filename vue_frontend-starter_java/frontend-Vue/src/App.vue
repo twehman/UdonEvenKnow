@@ -7,8 +7,8 @@
       <b-nav-item><router-link to="/profile">Profile</router-link></b-nav-item>
       <b-nav-item><router-link to="/restaurants">Restaurants</router-link></b-nav-item>
       <b-nav-item><router-link to="/details">Details</router-link></b-nav-item>
-      <b-nav-item v-if="isAuthenticated"><router-link to="/login">Login</router-link></b-nav-item>
-      <b-nav-item v-if="isAuthenticated === false" @click="logout">Logout</b-nav-item>
+      <b-nav-item v-if="!isAuthenticated"><router-link to="/login">Login</router-link></b-nav-item>
+      <b-nav-item v-if="isAuthenticated" @click="logout">Logout</b-nav-item>
     </b-nav>
     </header>
     <router-view/>
@@ -20,7 +20,7 @@ import auth from '@/auth'
 export default {
   data() {
     return {
-      isAuthenticated: auth.getUser() !== null
+      isAuthenticated: auth.getUser() != null
     };
   },
   methods: {
@@ -35,13 +35,14 @@ export default {
         .then((response) => {
             if(response.ok) {
                 auth.logout()
+                this.isAuthenticated = false
                 this.$router.push({ path: '/login' });
             }
         })
   },
   computed: {
-    getUser() {
-      return auth.getUser();
+    getAuthStatus: function() {
+      auth.getUser() != null
     }
   }
   }
