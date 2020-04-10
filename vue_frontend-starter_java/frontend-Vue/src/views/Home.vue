@@ -7,6 +7,7 @@
   <restaurant-search v-bind:zipcode="zipcode"></restaurant-search>
 </div>
 <div class="pref">
+  <p><h2 class="h2" align="left"> Here are some recommended restaurants:</h2></p>
 <restaurant-details></restaurant-details>
 </div>
 <div class="pref">
@@ -19,6 +20,7 @@
 import RestaurantSearch from "@/components/Home/RestaurantSearch.vue";
 import RestaurantDetails from "@/components/Home/RestaurantDetails.vue";
 import auth from '@/auth'
+
 export default {
   name: 'home',
   components: {
