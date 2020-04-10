@@ -2,14 +2,14 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import BootstrapVue from 'bootstrap-vue';
-
-Vue.use(BootstrapVue);
-//import 'bootstrap/dist/css/bootstrap.min.css';
-
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
+
+export const bus = new Vue();
 
 Vue.config.productionTip = false
+Vue.use(BootstrapVue);
 
 new Vue({
   router,

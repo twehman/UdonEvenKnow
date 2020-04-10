@@ -99,8 +99,9 @@
 import auth from '@/auth';
 import DislikeButton from "@/components/Home/DislikeButton.vue";
 import LikeButton from "@/components/Home/LikeButton.vue";
+import RestaurantSearch from "@/components/Home/RestaurantSearch.vue";
 
-export default {
+export default { 
     name: "RestaurantDetails",
     props: {
         choices: Object,
