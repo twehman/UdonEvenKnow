@@ -8,7 +8,7 @@
 </div>
 <div class="pref">
   <p><h2 class="h2" align="left"> Here are some recommended restaurants:</h2></p>
-<restaurant-details v-bind:choices="cuisineIds"></restaurant-details>
+<restaurant-details v-bind:details="zipcode" v-bind:choices="cuisineIds"></restaurant-details>
 </div>
 <div class="pref">
 </div>

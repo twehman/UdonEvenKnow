@@ -103,6 +103,7 @@ import LikeButton from "@/components/Home/LikeButton.vue";
 export default {
     name: "RestaurantDetails",
     props: {
+        choices: Object,
         details: Object
     },
     components: {
