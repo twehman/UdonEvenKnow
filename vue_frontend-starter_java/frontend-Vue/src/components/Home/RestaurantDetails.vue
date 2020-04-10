@@ -152,10 +152,30 @@ export default {
       username: auth.getUser().sub,
       restaurantimage: 
     };
+  watch: {
+    summaries: function {
+
+    }
+  }
+
+
+
     */
   
   
   methods: {
+    /* nextRestaurant() {
+      if(this.details.restauranuts.length < 1 ) {
+          return this.emptyArray;
+      }
+      if(this.restaurantNumber < this.details.restaurants.length - 1) {
+        this.restauantNumber = this.restaurantNumber + 1;
+      } else {
+        this.restaurantNumber = 0;
+      }
+    },
+  
+
     
   },
       created() {
