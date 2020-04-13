@@ -4,8 +4,46 @@
      <!--<div class="featuredimage">
         <img :src= 'details.restuarant.featured_image'>
      </div>-->
+
+        <!-- BOOTSTRAP STUFF
+        <b-card
+        title="details.restName"
+        img-src="details.restaurant.featured_image"
+        img-alt="Image"
+        img-top
+        tag="article"
+        style="max-width: 20rem;"
+        class="mb-2"
+         >
+        <b-card-text>
+        <h3 class="location">
+        <span class="location-object">Location:</span>
+        {{details.restLocation}}
+      </h3>
+       <h3 class="hours">
+        <span class="hours-object">Hours:</span>
+        {{details.hours}}
+      </h3>
+      <h3 class="rating">
+        <span class="rating-object">Rating:</span>
+        {{details.rating}} out of 5
+      </h3>
+      <h3 class="cuisine">
+        <span class="cuisine-object">Cuisine:</span>
+        {{details.cuisine}}
+      </h3>
+      <h3 class="price">
+        <span class="price-object">Price-Range:</span>
+        {{details.price}} 
+      </h3>
+        </b-card-text>
+
+        <b-button href="#" variant="primary">Go somewhere</b-button>
+      </b-card> 
+      -->
      
-      <h3 class="name">
+     
+       <h3 class="name">
         <span class="name-object">Name:</span>
         {{details.restName}}
         <img :src="details.imageUrl" />
