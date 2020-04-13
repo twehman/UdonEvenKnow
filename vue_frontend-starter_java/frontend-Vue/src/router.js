@@ -7,6 +7,7 @@ import Register from './views/Register.vue'
 import Profile from './views/Profile.vue'
 import Restaurants from './views/Restaurants.vue'
 import Details from './views/Details.vue'
+import Favorites from './views/Favorites.vue'
 
 Vue.use(Router)
 
@@ -72,6 +73,15 @@ const router = new Router({
           requiresAuth: false
         }
       },
+      {
+        path: "/Favorites",
+        name: "Favorites",
+        component: Favorites,
+        meta: {
+          requiresAuth: true
+          }
+  
+        },
   ]
 })
 
