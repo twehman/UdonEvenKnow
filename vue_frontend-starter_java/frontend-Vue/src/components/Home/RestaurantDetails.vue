@@ -144,7 +144,7 @@ export default {
   
 
   data() {
-        return {
+    return {
             restaurantNumber: 0,
             restaurants: [],
             testArray: [],
@@ -152,28 +152,15 @@ export default {
             errorArray: "Out of Restaurants"
         }
     },
- 
-
- /* data() {
-    return {
-      restaurantNumber: 0,
-      emptyArray: "Search again!",
-      username: auth.getUser().sub,
-      restaurantimage: 
-    };
+  
   watch: {
-    details: function {
-
+    details: function(shuffled) {
+      let shuffArray = shuffled.restaurants;
+      this.shuffle(shuffArray);
     }
-  }
+  },
 
-
-
-    */
-  
-  
   methods: {
-    
    nextRestaurant() {
       if(this.details.restaurant.length < 1 ) {
           return this.errorArray;
@@ -205,7 +192,7 @@ export default {
           body: JSON.stringify(payload)
         });
         if (response.status === 400) {
-          this.error = "Nah Bruh";
+          this.error = "NahB ruh";
         } else {
           if (this.details.restaurant.length < 1) {
             return this.emptyArray;
@@ -218,6 +205,17 @@ export default {
         }
       } catch (error) {
         this.error = "no beuno!!!!";
+      }
+    },
+    shuffle(a) {
+      var j, x, i;
+      for (i = a.length - 1; i > 0; i--) {
+        j= Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+      }
+      return a;
       }
     },
       created() {
@@ -256,7 +254,7 @@ export default {
         .catch((err) => console.log(err))
 
 }
-  }};
+},
 </script>
 
 <style>
