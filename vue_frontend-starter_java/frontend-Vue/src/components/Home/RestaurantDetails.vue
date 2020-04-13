@@ -38,8 +38,8 @@
         <b-button href="#" variant="danger">Dislike</b-button><!--Buttons not connected to components yet, stay tuned -RR 
    </div> -->
     <div id="buttons">
-       <dislike-button v-on:Dislike="dislikeRestaurant" v-if:="details.restaurants"/>
-       <like-button v-on:Like="likeRestaurant" v-if:="details.restaurants"/>
+       <dislike-button v-on:Dislike="dislikeRestaurant" v-if:="details.restaurant"/>
+       <like-button v-on:Like="likeRestaurant" v-if:="details.restaurant"/>
    </div>
   </div>
   
@@ -131,7 +131,7 @@ export default {
         let a = parseInt("details.restaurant.price_range"); // supposed to convert string price_range into number --RR
         return dollar.repeat(a);  // for some reason this only works when you hardcode ie replace a with 2 --RR
       },
-       getImage() { // ugh why wont this shit work!!!!!!!!
+       getImage() { 
       let thisRestaurant = this.details.restaurant;
       if (
         thisRestaurant.featured_image
@@ -148,7 +148,8 @@ export default {
             restaurantNumber: 0,
             restaurants: [],
             testArray: [],
-            currentRestaurant: []
+            currentRestaurant: [],
+            errorArray: "Out of Restaurants"
         }
     },
  
@@ -173,33 +174,52 @@ export default {
   
   methods: {
     
-  /* nextRestaurant() {
-      if(this.details.restauranuts.length < 1 ) {
-          return this.emptyArray;
+   nextRestaurant() {
+      if(this.details.restaurant.length < 1 ) {
+          return this.errorArray;
       }
-      if(this.restaurantNumber < this.details.restaurants.length - 1) {
+      if(this.restaurantNumber < this.details.restaurant.length - 1) {
         this.restauantNumber = this.restaurantNumber + 1;
-      } else {
+      } else{
         this.restaurantNumber = 0;
       }
     },
     dislikeRestaurant() {
-      this.details.restaurants.splice(this.restaurantNumber, 1);
- 
+      this.details.restaurant.splice(this.restaurantNumber, 1);
+    },
     likeRestaurant() {
       try {
         const payload = {
-          "RestaurantId": this.details.restaurants[this.restaurantNumber].restaurant.id,
-           "RestaurantName": this.details.restaurants[this.restaurantNumber].restaurant.name,
-           "RestaurantImage": this.details.restaurants[this.restaurantNumber].restaurant.featured_image,
-           "RestaurantPriceRange": this.details.restaurants[this.restaurantNumber].restaurant.price_range
+          "RestaurantId": this.details.restaurant.restaurant.id,
+           "RestaurantName": this.details.restaurant.name,
+           "RestaurantImage": this.details.restaurant.featured_image,
+           "RestaurantPriceRange": this.details.restaurant.restaurant.price_range
         };
-
-
-
-
-    */
-  },
+        const url = `${process.env.VUE_APP_REMOTE_API}/Favorites`;
+        const response = fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.getToken()
+          },
+          body: JSON.stringify(payload)
+        });
+        if (response.status === 400) {
+          this.error = "NahB ruh";
+        } else {
+          if (this.details.restaurant.length < 1) {
+            return this.emptyArray;
+          }
+          if (this.restaurantNumber < this.details.restaurant.length - 1) {
+            this.restaurantNumber = this.restaurantNumber + 1;
+          } else {
+            this.restaurantNumber = 0;
+          }
+        }
+      } catch (error) {
+        this.error = "no beuno!!!!";
+      }
+    },
       created() {
       fetch(`${process.env.VUE_APP_REMOTE_API}/restaurants`, {
               method: 'GET',
