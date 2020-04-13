@@ -1,10 +1,6 @@
 <template>
   <div class="restaurant-details">
     <div class="details" v-for="details in currentRestaurant"> <!-- just need to add v:bind here otherwise still able to loop -RR -->
-     <!--<div class="featuredimage">
-        <img :src= 'details.restuarant.featured_image'>
-     </div>-->
-     
       <h3 class="name">
         <span class="name-object">Name:</span>
         {{details.restaurant.name}}
@@ -30,55 +26,12 @@
         <span class="price-object">Price-Range:</span>
         {{price}}  
       </h3>
-
     </div>
-   <!-- <div id="buttons">
-        <b-button href="#" variant="success">Like</b-button>  <!--Buttons not connected to components yet, stay tuned -RR 
-        <br/>
-        <b-button href="#" variant="danger">Dislike</b-button> <!--Buttons not connected to components yet, stay tuned -RR 
-   </div> -->
-
     <div id="buttons">
-       <b-button @click="dislikeRestaurant" />
-       <like-button v-on:Like="likeRestaurant" v-if:="details.restaurant"/>
+       <b-button @click="dislikeRestaurant" variant="danger">Dislike</b-button>
+       <b-button @click="likeRestaurant" variant="success">Like</b-button>
    </div>
   </div>
-  
-  
-  <!--
-      <div class="featuredimage">
-        <img :src="getImage">
-      <div class="text-infor">
-        <div class="text-container" id="text-info">
-          <h3 class="name">{{details.restaurants[restaurantNumber].restaurant.name}}</h3>
-          <h3 class="rating">
-            <span class="rating-object">Rating:</span>
-            {{details.restaurants[restaurantNumber].restaurant.user_rating.aggregate_rating}} out of 5
-          </h3>
-          <h3 class="location">
-            <span class="location-object">Location:</span>
-            {{details.location[restaurantNumber].restaurant.location}} 
-          </h3>
-          <h3>
-            <span class="cuisine-object">Cuisine:</span>
-            {{details.cuisine[restaurantNumber].restaurant.cuisine}}  
-          </h3>
-          <h3>
-            <span class="price-range">Price:</span>
-            <span class="dollar-sign">{{dollarprice}}</span>
-          </h3>
-        </div>
-      </div>
-    </div>
-   <div id="buttons">
-       <dislike-button v-on:Dislike="dislikeRestaurant" v-if:="details.restaurants"/>
-       <like-button v-on:Like="likeRestaurant" v-if:="details.restaurants"/>
-   </div>
-   
-  </div>
-  </div>
-</template>
--->
 <!-- Let's implement B-cards for the restaurant details? I will change once everything works -SC
 <div>
   <b-card
@@ -150,7 +103,7 @@ export default {
             restaurants: [],
             testArray: [],
             currentRestaurant: [],
-            errorArray: "Out of Restaurants"
+            errorArray: "No More Restaurants"
         }
     },
   
@@ -179,12 +132,12 @@ export default {
     likeRestaurant() {
       try {
         const payload = {
-          "RestaurantId": this.details.restaurant.restaurant.id,
+          "RestaurantId": this.details.restaurant.id,
            "RestaurantName": this.details.restaurant.name,
            "RestaurantImage": this.details.restaurant.featured_image,
            "RestaurantPriceRange": this.details.restaurant.restaurant.price_range
         };
-        const url = `${process.env.VUE_APP_REMOTE_API}/Favorites`;
+        const url = `${process.env.VUE_APP_REMOTE_API}/favorites`;
         const response = fetch(url, {
           method: "POST",
           headers: {
@@ -194,10 +147,10 @@ export default {
           body: JSON.stringify(payload)
         });
         if (response.status === 400) {
-          this.error = "NahB ruh";
+          this.error = "Nah Bruh";
         } else {
           if (this.details.restaurant.length < 1) {
-            return this.emptyArray;
+            return this.testArray;
           }
           if (this.restaurantNumber < this.details.restaurant.length - 1) {
             this.restaurantNumber = this.restaurantNumber + 1;
