@@ -39,7 +39,7 @@
    </div> -->
 
     <div id="buttons">
-       <dislike-button v-on:Dislike="dislikeRestaurant" v-if:="details.restaurant"/>
+       <b-button @click="dislikeRestaurant" />
        <like-button v-on:Like="likeRestaurant" v-if:="details.restaurant"/>
    </div>
   </div>
@@ -173,7 +173,8 @@ export default {
       }
     },
     dislikeRestaurant() {
-      this.details.restaurant.splice(this.restaurantNumber, 1);
+      this.currentRestaurant.shift()
+      this.currentRestaurant.push(this.testArray.shift())
     },
     likeRestaurant() {
       try {
