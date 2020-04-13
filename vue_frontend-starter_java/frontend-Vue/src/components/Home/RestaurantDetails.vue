@@ -37,7 +37,7 @@
         <br/>
         <b-button href="#" variant="danger">Dislike</b-button> <!--Buttons not connected to components yet, stay tuned -RR 
    </div> -->
-   
+
     <div id="buttons">
        <dislike-button v-on:Dislike="dislikeRestaurant" v-if:="details.restaurant"/>
        <like-button v-on:Like="likeRestaurant" v-if:="details.restaurant"/>
@@ -255,7 +255,7 @@ export default {
         .catch((err) => console.log(err))
 
 }
-}
+};
 </script>
 
 <style>
