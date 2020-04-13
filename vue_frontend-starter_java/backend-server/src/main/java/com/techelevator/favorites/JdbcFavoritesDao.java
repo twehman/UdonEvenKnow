@@ -21,16 +21,12 @@ public class JdbcFavoritesDao implements FavoritesDao {
     }
     
     @Override
-    public List<Favorites> retrieveListsByUserId() {
+    public List<Favorites> retrieveListsByUserId(long userId) {
     	List<Favorites> allFavorites = new ArrayList<>();
     	
-    	String SqlGetAllFavorites = "SELECT *" +
-    			 					"FROM favorites" +
-    			 					"JOIN users" +
-    			 					"on favorites.id = users.id" +
-    			 					"GROUP BY favorites.id";
+    	String SqlGetAllFavorites = "SELECT * from favorites where user_id = ?";
     	
-    	SqlRowSet favoritesList = jdbcTemplate.queryForRowSet(SqlGetAllFavorites);
+    	SqlRowSet favoritesList = jdbcTemplate.queryForRowSet(SqlGetAllFavorites, userId);
     	
     	while (favoritesList.next()) {
     		Favorites theFavorites = mapRowToFavorites(favoritesList);
@@ -41,17 +37,14 @@ public class JdbcFavoritesDao implements FavoritesDao {
 
     @Override
     public Favorites createNewFavorite(Favorites aFavorite) {
-    	int id = getNextFavId();
     	Favorites newFavorites = new Favorites();
     	
-    	String SqlNewFavorite = "INSERT INTO favorites (id, user_id, restaurant_name, restaurant_location" +
+    	String SqlNewFavorite = "INSERT INTO favorites (user_id, restaurant_name, restaurant_location" +
     							"hours, rating, cuisine, price_range, image_url)" +
-    							"VALUES(?, ?, ?, ?, ?, ?, ?)";
+    							"VALUES(?, ?, ?, ?, ?, ?)";
     	
-    	jdbcTemplate.update(SqlNewFavorite, id, aFavorite.getUserId(), aFavorite.getRestName(), aFavorite.getRestLocation(), aFavorite.getHours(),
+    	jdbcTemplate.update(SqlNewFavorite, aFavorite.getUserId(), aFavorite.getRestName(), aFavorite.getRestLocation(), aFavorite.getHours(),
     						aFavorite.getRating(), aFavorite.getCuisine(), aFavorite.getPriceRange(), aFavorite.getImageUrl());
-    	
-    	aFavorite.setId(id);
     	
     	return newFavorites;
     }
@@ -73,8 +66,8 @@ public class JdbcFavoritesDao implements FavoritesDao {
     
     private Favorites mapRowToFavorites (SqlRowSet favoritesList) {
     	Favorites aFavorite = new Favorites();
-    	
-    	aFavorite.setUserId(favoritesList.getByte("user_id"));
+    	aFavorite.setId(favoritesList.getLong("id"));
+    	aFavorite.setUserId(favoritesList.getLong("user_id"));
     	aFavorite.setRestName(favoritesList.getString("restaurant_name"));
     	aFavorite.setRestLocation(favoritesList.getString("restaurant_location"));
     	aFavorite.setHours(favoritesList.getString("hours"));

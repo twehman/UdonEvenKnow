@@ -1,5 +1,8 @@
 package com.techelevator.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.techelevator.authentication.AuthProvider;
 import com.techelevator.authentication.JwtTokenHandler;
 import com.techelevator.authentication.UserCreationException;
+import com.techelevator.favorites.Favorites;
+import com.techelevator.favorites.JdbcFavoritesDao;
 import com.techelevator.model.JdbcUserPreferencesDao;
 import com.techelevator.model.User;
 import com.techelevator.model.UserPreferences;
@@ -35,6 +40,11 @@ public class ProfileController {
     
     @Autowired
     private JdbcZipcodeDao zipDao;
+    
+    @Autowired
+    private JdbcFavoritesDao favoritesDao;
+    
+    
     
     @RequestMapping(path = "/profile", method = RequestMethod.GET)
     public String getUserPreference() {
@@ -67,5 +77,19 @@ public class ProfileController {
     	User currUser = auth.getCurrentUser();
     	Zipcode userZipInfo = zipDao.getLatandLongwithZip(profileDao.getValidUserPreferencesWithId(currUser.getId()).getZipCode());
     	return userZipInfo;
+    }
+    
+    @RequestMapping(path = "/favorites", method = RequestMethod.GET)
+    public List<Favorites> favoritesList() {
+    	User currUser = auth.getCurrentUser();
+    	List<Favorites> favsList = favoritesDao.retrieveListsByUserId(currUser.getId());
+    	return favsList;
+    }
+    
+    @RequestMapping(path = "/favorites", method=RequestMethod.POST)
+    public String saveFavorite(@Valid @RequestBody Favorites newFavorite) {
+    	User currUser = auth.getCurrentUser();
+    	favoritesDao.createNewFavorite(newFavorite);
+    	return "{\"success\":true}";
     }
 }
