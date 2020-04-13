@@ -205,7 +205,7 @@ export default {
           body: JSON.stringify(payload)
         });
         if (response.status === 400) {
-          this.error = "NahB ruh";
+          this.error = "Nah Bruh";
         } else {
           if (this.details.restaurant.length < 1) {
             return this.emptyArray;
@@ -256,7 +256,7 @@ export default {
         .catch((err) => console.log(err))
 
 }
-};
+  }};
 </script>
 
 <style>
