@@ -68,7 +68,6 @@ export default {
       this.shuffle(shuffArray);
     },
     choices: function() {
-      if (this.currentRestaurant.length == 0) {
           fetch(`https://developers.zomato.com/api/v2.1/search?lat=${this.details.latitude}&lon=${this.details.longitude}&radius=&radius=10000&cuisines=${this.choices.toString()}`, {
               method: 'GET',
               headers: {
@@ -80,6 +79,8 @@ export default {
             return response.json()
         })
         .then((data) => {
+            this.currentRestaurant = []
+            this.testArray = []
             this.restaurants = data
             data.restaurants.forEach((item) => {
               this.testArray.push(item)
@@ -88,7 +89,6 @@ export default {
             this.currentRestaurant.push(this.testArray.shift())
             })
         .catch((err) => console.log(err))
-    }
     }
   },
 
