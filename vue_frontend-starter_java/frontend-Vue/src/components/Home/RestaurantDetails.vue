@@ -1,56 +1,35 @@
 <template>
-  <div class="restaurant-details">
-    <div class="details" v-for="details in currentRestaurant"> <!-- just need to add v:bind here otherwise still able to loop -RR -->
-      <h3 class="name">
-        <span class="name-object">Name:</span>
-        {{details.restaurant.name}}
-        <img :src="details.restaurant.featured_image" />
-      </h3>
-      <h3 class="location">
-        <span class="location-object">Location:</span>
-        {{details.restaurant.location.address}}
-      </h3>
-       <h3 class="hours">
-        <span class="hours-object">Hours:</span>
-        {{details.restaurant.timings}}
-      </h3>
-      <h3 class="rating">
-        <span class="rating-object">Rating:</span>
-        {{details.restaurant.user_rating.aggregate_rating}} out of 5
-      </h3>
-      <h3 class="cuisine">
-        <span class="cuisine-object">Cuisine:</span>
-        {{details.restaurant.cuisines}}
-      </h3>
-      <h3 class="price">
-        <span class="price-object" >Price-Range:</span>
-        <span class="price object" v-for="i in details.restaurant.price_range">$</span>
-      </h3>
+<b-container fluid>
+  <div class="back">
+   <div class="details" v-for="details in currentRestaurant"> <!-- just need to add v:bind here otherwise still able to loop -RR  -->
+        <img :src="details.restaurant.featured_image">
+        <h1 class="name"> {{details.restaurant.name}}</h1>
+        <hr>
+    <p class="det">
+    <b-icon-map />
+    Location:
+        {{details.restaurant.location.address}}<br>
+        <b-icon-clock />
+    Hours:
+        {{details.restaurant.timings}}<br>
+        <b-icon-star />
+    Rating:
+        {{details.restaurant.user_rating.aggregate_rating}} out of 5 <br>
+        <b-icon-egg-fried />
+    Cuisine:
+        {{details.restaurant.cuisines}}<br>
+        <b-icon-wallet />
+    Price-Range:
+        <span class="price object" v-for="i in details.restaurant.price_range">$</span><br>
+      </p>
     </div>
     <div id="buttons">
        <b-button @click="dislikeRestaurant" variant="danger">Dislike</b-button>
        <b-button @click="likeRestaurant" variant="success">Like</b-button>
    </div>
   </div>
-<!-- Let's implement B-cards for the restaurant details? I will change once everything works -SC
-<div>
-  <b-card
-    title="Card Title"
-    img-src="https://picsum.photos/600/300/?image=25"
-    img-alt="Image"
-    img-top
-    tag="article"
-    style="max-width: 20rem;"
-    class="mb-2"
-  >
-    <b-card-text>
-      Some quick example text to build on the card title and make up the bulk of the card's content.
-    </b-card-text>
-
-    <b-button href="#" variant="primary">Go somewhere</b-button>
-  </b-card>
 </div>
--->
+</b-container>
 </template>
 
 <script>
@@ -197,5 +176,33 @@ export default {
 </script>
 
 <style>
+.det  {
+  color: #484848;
+  text-align: left;
+  padding: 0px 0px 0px 15px;
+  font-size: 20px;
+}
+
+.back {
+  background-color: #FFFFFF;
+  border-color: #B0B0B0;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 30px;
+}
+
+.name {
+  color: #000000;
+  text-align: left;
+  padding-left: 15px;
+  font-size: 27px;
+  font-weight: bold;
+}
+
+img {
+  height: 400px;
+  border-radius: 20px;
+  padding-right: 10px;
+}
 
 </style>

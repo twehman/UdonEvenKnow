@@ -1,16 +1,14 @@
 <template>
-<b-container>
+<b-container fluid>
 <div class="main">
     <h1 class="sign" align="center">Welcome to Restaurant Tinder</h1>
 <div class="pref">
     <p><h2 class="h2" align="left"> Select your preferred cuisine types:</h2></p>
   <restaurant-search v-on:user-choices="passUserChoices" v-bind:zipcode="zipcode"></restaurant-search>
 </div>
-<div class="pref">
+<div class="rest">
   <p><h2 class="h2" align="left"> Here are some recommended restaurants:</h2></p>
 <restaurant-details v-bind:details="zipcode" v-bind:choices="cuisineIds"></restaurant-details>
-</div>
-<div class="pref">
 </div>
   </div>
   </b-container>
@@ -91,6 +89,13 @@ data() {
       margin-top: 20px;
     }
 
+    .rest {
+      background-color: #8EA8C3;
+      text-align: center;
+      box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+      margin-top: 20px;
+    }
+
     .h2 {
         padding-top: 10px;
         padding-left: 10px;
@@ -99,5 +104,4 @@ data() {
         font-weight: bold;
         font-size: 20px;
 }
-
 </style>
