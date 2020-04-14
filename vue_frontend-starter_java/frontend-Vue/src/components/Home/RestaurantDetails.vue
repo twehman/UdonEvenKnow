@@ -162,7 +162,9 @@ export default {
           this.zipcode = userZipcode
       })
       .catch((err) => console.log(err))
-    fetch(`https://developers.zomato.com/api/v2.1/search?lat=41.480881&lon=-81.80036`, {
+      const cuisines = this.choices.toString()
+      console.log(this.details.longtitude)
+    fetch(`https://developers.zomato.com/api/v2.1/search?lat=${this.details.latitude}&lon=${this.details.longitude}&radius=&radius=10000&cuisines=${cuisines}`, {
               method: 'GET',
               headers: {
                 Accept: 'application/json',
