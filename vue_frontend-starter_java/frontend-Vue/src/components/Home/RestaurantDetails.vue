@@ -87,6 +87,27 @@ export default {
     details: function(shuffled) {
       let shuffArray = shuffled.restaurants;
       this.shuffle(shuffArray);
+    },
+    choices: function() {
+          fetch(`https://developers.zomato.com/api/v2.1/search?lat=${this.details.latitude}&lon=${this.details.longitude}&radius=&radius=10000&cuisines=${this.choices.toString()}`, {
+              method: 'GET',
+              headers: {
+                Accept: 'application/json',
+                'user-key': '4c1372de3bf074d7157807284b3d747f',
+              }
+        })
+        .then((response) =>{
+            return response.json()
+        })
+        .then((data) => {
+            this.restaurants = data
+            data.restaurants.forEach((item) => {
+              this.testArray.push(item)
+            })
+            console.log('hi')
+            this.currentRestaurant.push(this.testArray.shift())
+            })
+        .catch((err) => console.log(err))
     }
   },
 
