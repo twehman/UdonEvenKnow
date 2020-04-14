@@ -89,6 +89,7 @@ export default {
       this.shuffle(shuffArray);
     },
     choices: function() {
+      if (this.currentRestaurant.length == 0) {
           fetch(`https://developers.zomato.com/api/v2.1/search?lat=${this.details.latitude}&lon=${this.details.longitude}&radius=&radius=10000&cuisines=${this.choices.toString()}`, {
               method: 'GET',
               headers: {
@@ -108,6 +109,7 @@ export default {
             this.currentRestaurant.push(this.testArray.shift())
             })
         .catch((err) => console.log(err))
+    }
     }
   },
 
@@ -183,27 +185,7 @@ export default {
           this.zipcode = userZipcode
       })
       .catch((err) => console.log(err))
-      const cuisines = this.choices.toString()
-      console.log(this.details.longtitude)
-    fetch(`https://developers.zomato.com/api/v2.1/search?lat=${this.details.latitude}&lon=${this.details.longitude}&radius=&radius=10000&cuisines=${cuisines}`, {
-              method: 'GET',
-              headers: {
-                Accept: 'application/json',
-                'user-key': '4c1372de3bf074d7157807284b3d747f',
-              }
-        })
-        .then((response) =>{
-            return response.json()
-        })
-        .then((data) => {
-            this.restaurants = data
-            data.restaurants.forEach((item) => {
-              this.testArray.push(item)
-            })
-            console.log('hi')
-            this.currentRestaurant.push(this.testArray.shift())
-            })
-        .catch((err) => console.log(err))
+    
 
 }
 };
