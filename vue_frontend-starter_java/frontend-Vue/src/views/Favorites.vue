@@ -66,7 +66,7 @@
       </h3>
       <h3 class="price">
         <span class="price-object">Price-Range:</span>
-        {{details.price}} 
+        {{details.priceRange}} 
       </h3>
 
     </div>

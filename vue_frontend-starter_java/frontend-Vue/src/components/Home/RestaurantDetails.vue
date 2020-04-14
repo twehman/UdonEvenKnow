@@ -142,7 +142,7 @@ export default {
           priceRange: dollarSymbols,
           hours: this.currentRestaurant[0].restaurant.timings,
           cuisine: this.currentRestaurant[0].restaurant.cuisines,
-          rating: this.currentRestaurant.restaurant.user_rating.aggregate_rating
+          rating: this.currentRestaurant[0].restaurant.user_rating.aggregate_rating
         };
         const url = `${process.env.VUE_APP_REMOTE_API}/favorites`;
               fetch(url, {
