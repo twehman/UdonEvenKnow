@@ -39,7 +39,7 @@
        <b-button @click="likeRestaurant" variant="success">Like</b-button>
   </div>
   <template v-slot:footer>
-    A matcha made in heaven
+    You make miso happy!
 </template>
   </b-card>
    <!--

@@ -13,7 +13,7 @@
     size="sm"
     ></b-form-checkbox-group>
     <b-form-group>
-    <b-button variant="outline-dark" v-on:click="$emit('user-choices', selectedCuisines)">Enough clicking, show me places to eat!</b-button>
+    <b-button variant="outline-dark" v-on:click="$emit('user-choices', selectedCuisines)"><b-icon-search /> Search for Restaurants</b-button>
     </b-form-group>
   </b-container>
   

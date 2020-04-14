@@ -1,7 +1,7 @@
 <template>
 <b-container>
-  <h1 class="h1" align="center">Favorite Restaurants</h1>
   <div class="div">
+  <h1 class="sign" align="center"><b-icon-heart-fill /> Favorite Restaurants</h1>
   <b-col align-h="start">
   <div class="details" v-for="details in restaurants"> <!-- just need to add v:bind here otherwise still able to loop -RR -->
      
@@ -106,12 +106,20 @@ export default {
   font-size: 20px;
 }
 
-.h1 {
-  margin: 1px auto;
-}
+.sign {
+        padding-top: 40px;
+        padding-bottom: 5px;
+        color: #252839;
+        font-family: sans-serif;
+        font-weight: bold;
+        font-size: 50px;
+        margin: 1px auto;
+    }
 
 .div {
-  margin: 1em auto;
+  margin: 4em auto;
+  border-radius: 1.5em;
+  box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
 }
 
 .name {

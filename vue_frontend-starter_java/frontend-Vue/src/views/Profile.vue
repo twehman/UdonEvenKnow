@@ -171,7 +171,7 @@ body {
         background-color: #FFFFFF;
         width: 400px;
         height: 530px;
-        margin: 7em auto;
+        margin: 4em auto;
         border-radius: 1.5em;
         box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
     }

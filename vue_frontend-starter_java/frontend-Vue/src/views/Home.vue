@@ -1,7 +1,8 @@
 <template>
 <b-container fluid>
 <div class="main">
-    <h1 class="sign" align="center">Welcome to Restaurant Tinder</h1>
+    <h1 class="sign" align="center">UD<b-icon-question-circle />N EVEN KNOW</h1>
+    <h3 align="center">Let's help you figure out where to eat</h3>
 <div class="pref">
     <p><h2 class="h2" align="left"> Select your preferred cuisine types:</h2></p>
   <restaurant-search v-on:user-choices="passUserChoices" v-bind:zipcode="zipcode"></restaurant-search>
@@ -65,23 +66,24 @@ data() {
     .main {
         background-color: #FFFFFF;
         width: 800px;
-        height: 600px;
-        margin: 5em auto;
+        margin: 4em auto;
         border-radius: 1.5em;
         box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
     }
 
     .sign {
         padding-top: 40px;
-        color: #003459;
+        color: #252839;
         font-family: sans-serif;
         font-weight: bold;
         font-size: 50px;
+        margin: 1px auto;
     }
 
     .pref {
-      background-color: #8EA8C3;
+      background-color: #808972;
       text-align: center;
+      border-radius: 20px;
       box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
       margin-top: 20px;
     }
