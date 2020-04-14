@@ -5,10 +5,7 @@
 <div class="pref">
     <p><h2 class="h2" align="left"> Select your preferred cuisine types:</h2></p>
   <restaurant-search v-on:user-choices="passUserChoices" v-bind:zipcode="zipcode"></restaurant-search>
-</div>
-<div class="rest">
-  <p><h2 class="h2" align="left"> Here are some recommended restaurants:</h2></p>
-<restaurant-details v-bind:details="zipcode" v-bind:choices="cuisineIds"></restaurant-details>
+  <restaurant-details v-bind:details="zipcode" v-bind:choices="cuisineIds"></restaurant-details>
 </div>
   </div>
   </b-container>
@@ -68,8 +65,8 @@ data() {
     .main {
         background-color: #FFFFFF;
         width: 800px;
-        height: 800px;
-        margin: 7em auto;
+        height: 600px;
+        margin: 5em auto;
         border-radius: 1.5em;
         box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
     }

@@ -2,6 +2,47 @@
 <b-container fluid>
   <div class="back">
    <div class="details" v-for="details in currentRestaurant"> <!-- just need to add v:bind here otherwise still able to loop -RR  -->
+
+  <b-card
+    img-src="details.restaurant.featured_image"
+    img-alt="Image"
+    img-top
+    tag="article"
+    style="max-width: 100%;"
+    class="mb-2"
+  >
+  <b-card-title>
+      <h1 class="name">{{details.restaurant.name}}</h1>
+  </b-card-title>
+  <hr>
+  <b-card-text>
+  <p class="det">
+    <b-icon-map />
+    Location:
+        {{details.restaurant.location.address}}<br>
+        <b-icon-clock />
+    Hours:
+        {{details.restaurant.timings}}<br>
+        <b-icon-star />
+    Rating:
+        {{details.restaurant.user_rating.aggregate_rating}} out of 5 <br>
+        <b-icon-egg-fried />
+    Cuisine:
+        {{details.restaurant.cuisines}}<br>
+        <b-icon-wallet />
+    Price-Range:
+        <span class="price object" v-for="i in details.restaurant.price_range">$</span><br>
+      </p>
+  </b-card-text>
+  <div id="buttons">
+       <b-button @click="dislikeRestaurant" variant="danger">Dislike</b-button>
+       <b-button @click="likeRestaurant" variant="success">Like</b-button>
+  </div>
+  <template v-slot:footer>
+    A matcha made in heaven
+</template>
+  </b-card>
+   <!--
         <img :src="details.restaurant.featured_image">
         <h1 class="name"> {{details.restaurant.name}}</h1>
         <hr>
@@ -25,7 +66,7 @@
     </div>
     <div id="buttons">
        <b-button @click="dislikeRestaurant" variant="danger">Dislike</b-button>
-       <b-button @click="likeRestaurant" variant="success">Like</b-button>
+       <b-button @click="likeRestaurant" variant="success">Like</b-button> -->
    </div>
   </div>
 </div>
@@ -185,10 +226,7 @@ export default {
 
 .back {
   background-color: #FFFFFF;
-  border-color: #B0B0B0;
-  border-width: 2px;
-  border-style: solid;
-  border-radius: 30px;
+  margin: 1em 1em 1em 1em;
 }
 
 .name {
