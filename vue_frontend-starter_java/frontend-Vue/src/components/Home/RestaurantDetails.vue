@@ -130,14 +130,19 @@ export default {
     },
     likeRestaurant() {
       console.log('in like method')
+      let dollarSymbols = ""
+      for (let i = 0; i < this.currentRestaurant[0].restaurant.price_range; i++ ) {
+        dollarSymbols += "$"
+      }
       console.log(`${this.currentRestaurant[0].restaurant.name}`)
         let payload = {
           restName: this.currentRestaurant[0].restaurant.name,
           restLocation: this.currentRestaurant[0].restaurant.location.address,
           imageUrl: this.currentRestaurant[0].restaurant.featured_image,
-          priceRange: this.currentRestaurant[0].restaurant.price_range,
+          priceRange: dollarSymbols,
           hours: this.currentRestaurant[0].restaurant.timings,
-          cuisine: this.currentRestaurant[0].restaurant.cuisine,
+          cuisine: this.currentRestaurant[0].restaurant.cuisines,
+          rating: this.currentRestaurant.restaurant.user_rating.aggregate_rating
         };
         const url = `${process.env.VUE_APP_REMOTE_API}/favorites`;
               fetch(url, {
