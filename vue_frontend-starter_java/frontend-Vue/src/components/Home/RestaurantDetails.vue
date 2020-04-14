@@ -23,8 +23,8 @@
         {{details.restaurant.cuisines}}
       </h3>
       <h3 class="price">
-        <span class="price-object">Price-Range:</span>
-        {{price}}  
+        <span class="price-object" >Price-Range:</span>
+        <span class="price object" v-for="i in details.restaurant.price_range">$</span>
       </h3>
     </div>
     <div id="buttons">
@@ -62,7 +62,7 @@ import { bus } from "../../main.js";
 export default { 
     name: "RestaurantDetails",
     props: {
-        choices: Object,
+        choices: Array,
         details: Object
     },
     components: {
@@ -70,31 +70,7 @@ export default {
         LikeButton
     },
     computed: {
-       dollarPrice: function() {  // trying to convert pricerange into $-$$ -RR 
-            let dollarsigns = "";
-            
-                for (
-                    let i = 0; i < this.details.restaurant.price_range; i++) {
-          dollarsigns += "$";
-        }
-      
-      return dollarsigns;
-    }, 
-      price: function(){    // trying to convert price_range into $ --- ex: 2 == $$, 3==$$$   --RR
-        let dollar = '$';
-        let a = parseInt("details.restaurant.price_range"); // supposed to convert string price_range into number --RR
-        return dollar.repeat(a);  // for some reason this only works when you hardcode ie replace a with 2 --RR
-      },
-       getImage() { 
-      let thisRestaurant = this.details.restaurant;
-      if (
-        thisRestaurant.featured_image
-      ) {
-        return thisRestaurant.featured_image;
-      }     
-      return thisRestaurant.featured_image;
-    }  
-  },
+    },
   
 
   data() {
@@ -130,37 +106,35 @@ export default {
       this.currentRestaurant.push(this.testArray.shift())
     },
     likeRestaurant() {
-      try {
-        const payload = {
-          "RestaurantId": this.details.restaurant.id,
-           "RestaurantName": this.details.restaurant.name,
-           "RestaurantImage": this.details.restaurant.featured_image,
-           "RestaurantPriceRange": this.details.restaurant.restaurant.price_range
+      console.log('in like method')
+      console.log(`${this.currentRestaurant[0].restaurant.name}`)
+        let payload = {
+          restName: this.currentRestaurant[0].restaurant.name,
+          restLocation: this.currentRestaurant[0].restaurant.location.address,
+          imageUrl: this.currentRestaurant[0].restaurant.featured_image,
+          priceRange: this.currentRestaurant[0].restaurant.price_range,
+          hours: this.currentRestaurant[0].restaurant.timings,
+          cuisine: this.currentRestaurant[0].restaurant.cuisine,
         };
         const url = `${process.env.VUE_APP_REMOTE_API}/favorites`;
-        const response = fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.getToken()
-          },
-          body: JSON.stringify(payload)
-        });
-        if (response.status === 400) {
-          this.error = "Nah Bruh";
-        } else {
-          if (this.details.restaurant.length < 1) {
-            return this.testArray;
-          }
-          if (this.restaurantNumber < this.details.restaurant.length - 1) {
-            this.restaurantNumber = this.restaurantNumber + 1;
-          } else {
-            this.restaurantNumber = 0;
-          }
-        }
-      } catch (error) {
-        this.error = "no beuno!!!!";
-      }
+              fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + auth.getToken(),
+          User: auth.getUser()
+        },
+        body: JSON.stringify(payload)
+      })
+        .then((response) => {
+          if (response.ok) {
+          this.currentRestaurant.shift()
+          this.currentRestaurant.push(this.testArray.shift())
+        } 
+        })
+       .catch ((error) => {
+        console.log(error)
+      })
     },
     shuffle(a) {
       var j, x, i;

@@ -89,6 +89,7 @@ public class ProfileController {
     @RequestMapping(path = "/favorites", method=RequestMethod.POST)
     public String saveFavorite(@Valid @RequestBody Favorites newFavorite) {
     	User currUser = auth.getCurrentUser();
+    	newFavorite.setUserId(currUser.getId());
     	favoritesDao.createNewFavorite(newFavorite);
     	return "{\"success\":true}";
     }
