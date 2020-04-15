@@ -2,7 +2,7 @@
 <b-container fluid>
   <b-col>
   <div class="back">
-   <div class="details" v-for="details in currentRestaurant"> <!-- just need to add v:bind here otherwise still able to loop -RR  -->
+   <div class="details" v-for="details in currentRestaurant"> 
 
   <b-card
     :img-src="details.restaurant.featured_image"
@@ -43,31 +43,7 @@
     You make miso happy!
 </template>
   </b-card>
-   <!--
-        <img :src="details.restaurant.featured_image">
-        <h1 class="name"> {{details.restaurant.name}}</h1>
-        <hr>
-    <p class="det">
-    <b-icon-map />
-    Location:
-        {{details.restaurant.location.address}}<br>
-        <b-icon-clock />
-    Hours:
-        {{details.restaurant.timings}}<br>
-        <b-icon-star />
-    Rating:
-        {{details.restaurant.user_rating.aggregate_rating}} out of 5 <br>
-        <b-icon-egg-fried />
-    Cuisine:
-        {{details.restaurant.cuisines}}<br>
-        <b-icon-wallet />
-    Price-Range:
-        <span class="price object" v-for="i in details.restaurant.price_range">$</span><br>
-      </p>
-    </div>
-    <div id="buttons">
-       <b-button @click="dislikeRestaurant" variant="danger">Dislike</b-button>
-       <b-button @click="likeRestaurant" variant="success">Like</b-button> -->
+   
    </div>
   </div>
 </div>
@@ -77,8 +53,6 @@
 
 <script>
 import auth from '@/auth';
-import DislikeButton from "@/components/Home/DislikeButton.vue";
-import LikeButton from "@/components/Home/LikeButton.vue";
 import { bus } from "../../main.js";
 
 export default { 
@@ -88,8 +62,7 @@ export default {
         details: Object
     },
     components: {
-        DislikeButton,
-        LikeButton
+        
     },
     computed: {
     },
