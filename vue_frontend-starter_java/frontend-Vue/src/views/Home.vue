@@ -2,7 +2,7 @@
 <b-container fluid>
 <div class="main">
     <h1 class="sign" align="center">UD<b-icon-question-circle animation="spin" />N EVEN KNOW</h1>
-    <h3 align="center">Let's help you figure out where to eat</h3>
+    <h3 align="center">Not sure where to eat? Let's help!</h3>
 <div class="pref">
     <p><h2 class="h2" align="left"> Select your preferred cuisine types:</h2></p>
   <restaurant-search v-on:user-choices="passUserChoices" v-bind:zipcode="zipcode"></restaurant-search>

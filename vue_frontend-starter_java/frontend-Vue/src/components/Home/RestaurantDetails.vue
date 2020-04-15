@@ -36,8 +36,10 @@
       </p>
   </b-card-text>
   <div id="buttons">
+    <b-button-group>
        <b-button @click="dislikeRestaurant" variant="danger">Dislike</b-button>
        <b-button @click="likeRestaurant" variant="success">Like</b-button>
+    </b-button-group>
   </div>
   <template v-slot:footer>
     You make miso happy!
@@ -211,10 +213,4 @@ export default {
   font-size: 27px;
   font-weight: bold;
 }
-
-img {
-  width: 100%;
-  border-radius: 20px;
-}
-
 </style>
