@@ -1,10 +1,11 @@
 <template>
 <b-container fluid>
+  <b-col>
   <div class="back">
    <div class="details" v-for="details in currentRestaurant"> <!-- just need to add v:bind here otherwise still able to loop -RR  -->
 
   <b-card
-    img-src="details.restaurant.featured_image"
+    :img-src="details.restaurant.featured_image"
     img-alt="Image"
     img-top
     tag="article"
@@ -70,6 +71,7 @@
    </div>
   </div>
 </div>
+</b-col>
 </b-container>
 </template>
 
@@ -238,9 +240,8 @@ export default {
 }
 
 img {
-  height: 400px;
+  width: 100%;
   border-radius: 20px;
-  padding-right: 10px;
 }
 
 </style>
