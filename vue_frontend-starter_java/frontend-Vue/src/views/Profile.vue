@@ -5,47 +5,72 @@
     <b-form class="form-profile" @submit.prevent="profile">
       <p><h1 class="sign" align="center">Create Profile</h1></p>
        
-      <p><b-form-input
+      <p>
+        <b-input-group>
+        <b-input-group-prepend is-text>
+        <b-icon icon="person-lines-fill"></b-icon></b-input-group-prepend>
+        <b-form-input
         type="text"
         id="firstName"
         placeholder="FirstName"
         v-model="userPreferences.firstName"
         required
         autofocus
-      /></p>
-      <p><b-form-input
+      /></b-input-group></p>
+      <p>
+        <b-input-group>
+        <b-input-group-prepend is-text>
+        <b-icon icon="person-lines-fill"></b-icon></b-input-group-prepend>
+        <b-form-input
         type="text"
         id="lastName"
         placeholder="LastName"
         v-model="userPreferences.lastName"
         required
-      /></p>
-      <p><b-form-input
+      /></b-input-group></p>
+      <p>
+        <b-input-group>
+        <b-input-group-prepend is-text>
+        <b-icon icon="house-door"></b-icon></b-input-group-prepend>
+        <b-form-input
         type="text"
         id="address1"
         placeholder="Address 1"
         v-model="userPreferences.addressOne"
         required
-      /></p>
-      <p><b-form-input
+      /></b-input-group></p>
+      <p>
+        <b-input-group>
+        <b-input-group-prepend is-text>
+        <b-icon icon="house-door"></b-icon></b-input-group-prepend>
+        <b-form-input
         type="text"
         id="address2"
         placeholder="Address 2"
         v-model="userPreferences.addressTwo"
-        
-      /></p>
+      /></b-input-group></p>
       
-       <p><b-form-input
+       <p>
+         <b-input-group>
+        <b-input-group-prepend is-text>
+        <b-icon icon="geo-alt"></b-icon></b-input-group-prepend>
+         <b-form-input
         type="text"
         id="city"
         placeholder="City"
         v-model="userPreferences.city"
         required
-      /></p>
+      /></b-input-group></p>
        
-       <p><b-form-select v-model="userPreferences.state" :options="states" name="state"></b-form-select></p>
+       <p><b-input-group>
+        <b-input-group-prepend is-text>
+        <b-icon icon="geo-alt"></b-icon></b-input-group-prepend><b-form-select v-model="userPreferences.state" :options="states" name="state"></b-form-select></b-input-group></p>
      
-       <p><b-form-input
+       <p>
+       <b-input-group>
+        <b-input-group-prepend is-text>
+        <b-icon icon="geo-alt"></b-icon></b-input-group-prepend>
+       <b-form-input
         type="text"
         id="zipcode"
         placeholder="Zipcode"
@@ -55,9 +80,9 @@
         
         v-model="userPreferences.zipCode"
         
-      /></p>
+      /></b-input-group></p>
       <p align="center"><b-button variant="outline-primary" type="submit">
-        Submit
+        <b-icon-check-box /> Submit
       </b-button></p>
     </b-form>
   </div>
@@ -178,7 +203,7 @@ body {
     
     .sign {
         padding-top: 40px;
-        color: #003459;
+        color: #252839;
         font-family: sans-serif;
         font-weight: bold;
         font-size: 23px;
