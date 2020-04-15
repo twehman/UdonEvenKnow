@@ -41,7 +41,7 @@ public class JdbcFavoritesDao implements FavoritesDao {
     	
     	String SqlNewFavorite = "INSERT INTO favorites (user_id, restaurant_name, restaurant_location, " +
     							"hours, rating, cuisine, price_range, image_url)" +
-    							"VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+    							"VALUES(?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT DO NOTHING";
     	
     	jdbcTemplate.update(SqlNewFavorite, aFavorite.getUserId(), aFavorite.getRestName(), aFavorite.getRestLocation(), aFavorite.getHours(),
     						aFavorite.getRating(), aFavorite.getCuisine(), aFavorite.getPriceRange(), aFavorite.getImageUrl());
