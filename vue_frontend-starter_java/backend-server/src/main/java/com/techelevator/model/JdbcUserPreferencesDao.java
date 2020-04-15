@@ -50,7 +50,7 @@ public class JdbcUserPreferencesDao implements UserPreferencesDao {
     	userPref.setCity(city);
     	userPref.setState(state);
     	userPref.setZipCode(zipCode);
-        String sqlQuery = "UPDATE user_data (first_name, last_name, address_one, address_two, city, state, zip_code) VALUES( ?, ?, ?, ?, ?, ?, ?) WHERE id = ?";
+        String sqlQuery = "UPDATE users_data SET first_name = ?, last_name = ?, address_one = ?, address_two = ?, city = ?, state = ?, zip_code = ? WHERE id = ?";
         jdbcTemplate.update(sqlQuery, firstName, lastName, addressOne, addressTwo, city, state, zipCode, id);
         return userPref;
     }
