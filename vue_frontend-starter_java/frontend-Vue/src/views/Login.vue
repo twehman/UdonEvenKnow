@@ -9,23 +9,33 @@
       <b-alert show variant="success" v-if="this.$route.query.registration" align="center"> 
         Thank you for registering, please sign in.
       </b-alert>
-      <p><b-form-input
+      <p>
+        <b-input-group>
+        <b-input-group-prepend is-text>
+        <b-icon icon="person"></b-icon>
+      </b-input-group-prepend>
+        <b-form-input
         type="text"
         id="username"
         placeholder="Username"
         v-model="user.username"
         required
         autofocus
-      /></p>
+      /></b-input-group></p>
 
-      <p><b-form-input
+      <p>
+        <b-input-group>
+        <b-input-group-prepend is-text>
+        <b-icon icon="shield-lock"></b-icon>
+      </b-input-group-prepend>
+        <b-form-input
         type="password"
         id="password"
         placeholder="Password"
         v-model="user.password"
         required
-      /></p>
-      <p align="center"><b-button variant="outline-primary" type="submit">Sign in</b-button></p>
+      /></b-input-group></p>
+      <p align="center"><b-button variant="outline-primary" type="submit"><b-icon-check-box /> Sign in</b-button></p>
       <p align="center"><router-link :to="{ name: 'register' }">Need an account?</router-link></p>
       
     </b-form>

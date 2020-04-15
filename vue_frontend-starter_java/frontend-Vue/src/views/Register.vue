@@ -7,30 +7,43 @@
       <b-alert show variant="danger" v-if="registrationErrors" align="center">
         There were problems registering this user.
       </b-alert>
-      <p><b-form-input
+      <p>
+        <b-input-group>
+        <b-input-group-prepend is-text>
+        <b-icon icon="person"></b-icon>
+      </b-input-group-prepend>
+        <b-form-input
         type="text"
         id="username"
         placeholder="Username"
         v-model="user.username"
         required
         autofocus
-      /></p>
-      <p><b-form-input
+      /></b-input-group></p>
+      <p>
+        <b-input-group>
+        <b-input-group-prepend is-text>
+        <b-icon icon="shield-lock"></b-icon></b-input-group-prepend>
+        <b-form-input
         type="password"
         id="password"
         placeholder="Password"
         v-model="user.password"
         required
-      /></p>
-      <p><b-form-input
+      /></b-input-group></p>
+      <p>
+        <b-input-group>
+        <b-input-group-prepend is-text>
+        <b-icon icon="shield-lock"></b-icon></b-input-group-prepend>
+        <b-form-input
         type="password"
         id="confirmPassword"
         placeholder="Confirm Password"
         v-model="user.confirmPassword"
         required
-      /></p>
+      /></b-input-group></p>
       <p align="center"><b-button variant="outline-primary" type="submit">
-        Create Account
+        <b-icon-check-box /> Create Account
       </b-button></p>
       <p align="center"><router-link :to="{ name: 'login' }">
         Have an account?
