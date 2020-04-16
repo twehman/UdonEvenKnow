@@ -13,7 +13,7 @@
     class="mb-2"
   >
   <b-card-title>
-      <h1 class="name">{{details.restaurant.name}}</h1>
+      <h1 class="name"><b-link :href="details.restaurant.url" target="_blank">{{details.restaurant.name}}</b-link></h1>
   </b-card-title>
   <hr>
   <b-card-text>
