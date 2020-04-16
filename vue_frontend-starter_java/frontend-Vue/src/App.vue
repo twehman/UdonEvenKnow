@@ -10,6 +10,10 @@
       <b-nav-item v-if="isAuthenticated" @click="logout">Logout</b-nav-item>
     </b-nav>
     </header>
+
+    <div class ="footer">
+      © Team EL Expression
+    </div>
     <router-view/>
   </div>
 
@@ -73,5 +77,17 @@ header {
 }
 .nav li a:hover {
   text-decoration: underline;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #E8F1F2;
+  color: #00171F;
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Courier New', Courier, monospace;
 }
 </style>
