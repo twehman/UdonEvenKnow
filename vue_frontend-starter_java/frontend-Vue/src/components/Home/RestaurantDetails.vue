@@ -48,7 +48,6 @@
    
    </div>
   </div>
-</div>
 </b-col>
 </b-container>
 </template>

@@ -3,8 +3,9 @@
 <div class="main">
     <h1 class="sign" align="center">UD<b-icon-question-circle animation="spin" />N EVEN KNOW</h1>
     <h3 align="center">Not sure where to eat? Let's help!</h3>
+    <hr>
 <div class="pref">
-    <p><h2 class="h2" align="left"> Select your preferred cuisine types:</h2></p>
+    <h2 class="h2" align="left">Select your preferred cuisine types:</h2>
   <restaurant-search v-on:user-choices="passUserChoices" v-bind:zipcode="zipcode"></restaurant-search>
   <restaurant-details v-bind:details="zipcode" v-bind:choices="cuisineIds"></restaurant-details>
 </div>
