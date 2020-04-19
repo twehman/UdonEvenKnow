@@ -75,17 +75,16 @@ export default {
             restaurants: [],
             testArray: [],
             currentRestaurant: [],
-            errorArray: "No More Restaurants"
+            startParam: 0,
+            countParam: 0
         }
     },
   
   watch: {
-    details: function(shuffled) {
-      let shuffArray = shuffled.restaurants;
-      this.shuffle(shuffArray);
-    },
     choices: function() {
-          fetch(`https://developers.zomato.com/api/v2.1/search?lat=${this.details.latitude}&lon=${this.details.longitude}&radius=&radius=10000&cuisines=${this.choices.toString()}`, {
+      this.startParam = 0
+      this.countParam = 0
+          fetch(`https://developers.zomato.com/api/v2.1/search?start=${this.startParam}&lat=${this.details.latitude}&lon=${this.details.longitude}&radius=&radius=10000&cuisines=${this.choices.toString()}`, {
               method: 'GET',
               headers: {
                 Accept: 'application/json',
@@ -96,16 +95,39 @@ export default {
             return response.json()
         })
         .then((data) => {
+          this.countParam = data.results_found 
             this.currentRestaurant = []
             this.testArray = []
             this.restaurants = data
             data.restaurants.forEach((item) => {
               this.testArray.push(item)
             })
-            console.log('hi')
             this.currentRestaurant.push(this.testArray.shift())
             })
         .catch((err) => console.log(err))
+    },
+    testArray: function() {
+      if (this.testArray.length <= 5) {
+        this.startParam += 20
+         fetch(`https://developers.zomato.com/api/v2.1/search?start=${this.startParam}&lat=${this.details.latitude}&lon=${this.details.longitude}&radius=&radius=10000&cuisines=${this.choices.toString()}`, {
+              method: 'GET',
+              headers: {
+                Accept: 'application/json',
+                'user-key': '4c1372de3bf074d7157807284b3d747f',
+              }
+        })
+        .then((response) =>{
+            return response.json()
+        })
+        .then((data) => {
+          this.countParam = data.results_found 
+          data.restaurants.forEach((item) => {
+            this.testArray.push(item)
+          })
+        })
+        .catch((err) => console.log(err))
+    
+      }
     }
   },
 
@@ -160,16 +182,6 @@ export default {
         console.log(error)
       })
     },
-    shuffle(a) {
-      var j, x, i;
-      for (i = a.length - 1; i > 0; i--) {
-        j= Math.floor(Math.random() * (i + 1));
-        x = a[i];
-        a[i] = a[j];
-        a[j] = x;
-      }
-      return a;
-      }
     },
       created() {
       fetch(`${process.env.VUE_APP_REMOTE_API}/restaurants`, {
@@ -188,7 +200,7 @@ export default {
       .catch((err) => console.log(err))
     
 
-}
+}, 
 };
 </script>
 

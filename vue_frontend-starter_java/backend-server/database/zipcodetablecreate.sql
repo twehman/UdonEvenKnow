@@ -15,5 +15,5 @@ geopoint varchar);
 COMMIT;
 
 BEGIN TRANSACTION;
-copy zip_codes from '/Users/student/workspace/java-final-capstone-team-restaurant-tinder/vue_frontend-starter_java/backend-server/us-zip-code-latitude-and-longitude.csv' DELIMITERS ';' CSV;
+copy zip_codes from 'C:\Users\twehm\workspace\java-final-capstone-team-restaurant-tinder\vue_frontend-starter_java\backend-server\us-zip-code-latitude-and-longitude.csv' DELIMITERS ';' CSV;
 COMMIT;
