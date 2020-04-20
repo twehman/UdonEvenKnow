@@ -24,7 +24,7 @@ public class JdbcFavoritesDao implements FavoritesDao {
     public List<Favorites> retrieveListsByUserId(long userId) {
     	List<Favorites> allFavorites = new ArrayList<>();
     	
-    	String SqlGetAllFavorites = "SELECT * from favorites where user_id = ?";
+    	String SqlGetAllFavorites = "SELECT * FROM favorites WHERE user_id = ?";
     	
     	SqlRowSet favoritesList = jdbcTemplate.queryForRowSet(SqlGetAllFavorites, userId);
     	

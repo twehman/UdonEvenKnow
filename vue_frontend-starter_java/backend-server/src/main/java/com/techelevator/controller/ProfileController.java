@@ -55,7 +55,7 @@ public class ProfileController {
     		return "{\"hasPreferences\":true}";
     	}
     	else {
-		return "{\"hasPreferences\":false}"; 
+    		return "{\"hasPreferences\":false}"; 
     	}
 }
     
@@ -64,10 +64,9 @@ public class ProfileController {
        User currUser = auth.getCurrentUser();
        if (profileDao.userHasPreferencesEntry(auth.getCurrentUser().getId()) == true) {
           UserPreferences currUserPreferences = profileDao.changeUserPreferences(currUser.getId(), userpref.getFirstName(), userpref.getLastName(), userpref.getAddressOne(), userpref.getAddressTwo(), userpref.getCity(), userpref.getState(), userpref.getZipCode());
-
        }
        else {
-       UserPreferences currUserPreferences = profileDao.saveUserPreferences(currUser.getId(), userpref.getFirstName(), userpref.getLastName(), userpref.getAddressOne(), userpref.getAddressTwo(), userpref.getCity(), userpref.getState(), userpref.getZipCode());
+    	   UserPreferences currUserPreferences = profileDao.saveUserPreferences(currUser.getId(), userpref.getFirstName(), userpref.getLastName(), userpref.getAddressOne(), userpref.getAddressTwo(), userpref.getCity(), userpref.getState(), userpref.getZipCode());
        }
        return "{\"success\":true}";
     }

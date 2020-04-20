@@ -28,7 +28,6 @@ public class JdbcZipcodeDao implements ZipcodeDao {
 		while(results.next()) {
 			userZipcode = mapRowSetToZipCode(results);
 		}
-		
 		return userZipcode;
 	}
 

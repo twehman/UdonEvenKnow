@@ -84,19 +84,16 @@ public class JdbcUserPreferencesDao implements UserPreferencesDao {
 
     private UserPreferences mapRowToUserPreferences(SqlRowSet results) {
         UserPreferences preferences = new UserPreferences();
-            preferences.setId(results.getLong("id"));
-            preferences.setFirstName(results.getString("first_name"));
-            preferences.setLastName(results.getString("last_name"));
-            preferences.setAddressOne(results.getString("address_one"));
-            preferences.setAddressTwo(results.getString("address_two"));
-            preferences.setCity(results.getString("city"));
-            preferences.setState(results.getString("state"));
-            preferences.setZipCode(results.getInt("zip_code"));
-            return preferences;
-            
-            
-
-        }
+        preferences.setId(results.getLong("id"));
+        preferences.setFirstName(results.getString("first_name"));
+        preferences.setLastName(results.getString("last_name"));
+        preferences.setAddressOne(results.getString("address_one"));
+        preferences.setAddressTwo(results.getString("address_two"));
+        preferences.setCity(results.getString("city"));
+        preferences.setState(results.getString("state"));
+        preferences.setZipCode(results.getInt("zip_code"));
+        return preferences;
+    }
 
 	@Override
 	public boolean userHasPreferencesEntry(long id) {
