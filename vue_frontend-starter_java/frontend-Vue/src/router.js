@@ -5,8 +5,6 @@ import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import Profile from './views/Profile.vue'
-import Restaurants from './views/Restaurants.vue'
-import Details from './views/Details.vue'
 import Favorites from './views/Favorites.vue'
 
 Vue.use(Router)
@@ -56,22 +54,6 @@ const router = new Router({
         requiresAuth: true
         }
 
-      },
-      {
-        path: "/restaurants",
-        name: "restaurants",
-        component: Restaurants,
-        meta: {
-          requiresAuth: false
-        }
-      },
-      {
-        path: "/details",
-        name: "details",
-        component: Details,
-        meta: {
-          requiresAuth: false
-        }
       },
       {
         path: "/Favorites",

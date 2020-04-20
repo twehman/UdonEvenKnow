@@ -92,4 +92,10 @@ public class ProfileController {
     	favoritesDao.createNewFavorite(newFavorite);
     	return "{\"success\":true}";
     }
+    
+    @RequestMapping(path = "/userDetails", method=RequestMethod.GET)
+    public UserPreferences getDetails() {
+    	User currUser = auth.getCurrentUser();
+    	return profileDao.getValidUserPreferencesWithId(currUser.getId());
+    }
 }

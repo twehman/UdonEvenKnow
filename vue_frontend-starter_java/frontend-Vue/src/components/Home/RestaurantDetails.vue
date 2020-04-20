@@ -109,6 +109,7 @@ export default {
           this.testArray = [];
           this.restaurants = data;
           data.restaurants.forEach(item => {
+            //item.distance = getDistance(item)
             this.testArray.push(item);
           });
           this.currentRestaurant.push(this.testArray.shift());
@@ -201,7 +202,11 @@ export default {
         .catch(error => {
           console.log(error);
         });
-    }
+    },
+
+  getDistance(item) {
+
+  }
   },
   created() {
     fetch(`${process.env.VUE_APP_REMOTE_API}/restaurants`, {
